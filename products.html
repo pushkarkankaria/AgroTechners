@@ -1112,8 +1112,7 @@
 
   <script>
     // ─── PRODUCT DATA ───
-    // To add images: set the `img` field to a file path or data URL.
-    // You can also edit this list to add/remove products.
+    (async function() {
     const PRODUCTS = [
       {
         id: 1, cat: 'fertilizer',
@@ -1335,8 +1334,9 @@
       });
     });
 
-    // Initial render
+    // Initial render — after Supabase data is loaded
     renderProducts();
+    })(); // end async IIFE
   </script>
 </body>
 

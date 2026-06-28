@@ -6,7 +6,7 @@
 <title>Admin Panel — AgroTechners Biotech</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--forest:#1a3d0a;--green:#4CAF50;--gold:#c8a84b;--gold-light:#e2c97a;--brown:#6b3a1f;--offwhite:#fafaf7;--text-muted:#5a5a4a;--danger:#e53935;--forest-deep:#0f2506}
+:root{--forest:#1a3d0a;--green:#4CAF50;--gold:#c8a84b;--brown:#6b3a1f;--text-muted:#5a5a4a;--danger:#e53935;--forest-deep:#0f2506}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#f0f0e8;min-height:100vh}
 #loginScreen{position:fixed;inset:0;background:var(--forest-deep);display:flex;align-items:center;justify-content:center;z-index:999}
@@ -19,16 +19,14 @@ body{font-family:'DM Sans',sans-serif;background:#f0f0e8;min-height:100vh}
 .login-box button:hover{background:#2d5a1b}
 .login-err{color:var(--danger);font-size:.82rem;margin-bottom:.8rem;display:none}
 .login-err.show{display:block}
-
-/* LAYOUT */
 .admin-wrap{display:flex;min-height:100vh}
-.sidebar{width:240px;background:var(--forest-deep);flex-shrink:0;padding:0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar{width:240px;background:var(--forest-deep);flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto}
 .sidebar-logo{padding:1.5rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px;cursor:pointer;position:relative}
 .sidebar-logo span{font-family:'Playfair Display',serif;font-size:.95rem;color:#fff;line-height:1.2}
 .sidebar-logo small{display:block;font-size:.62rem;color:var(--gold);letter-spacing:.1em;font-family:'DM Sans',sans-serif}
 .logo-img-wrap{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#1a3d0a;border:2px solid #4CAF50;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .logo-img-wrap img{width:100%;height:100%;object-fit:cover}
-.logo-upload-hint{position:absolute;bottom:-1px;left:14px;font-size:.58rem;color:var(--gold);opacity:0;transition:opacity .2s}
+.logo-upload-hint{position:absolute;bottom:4px;left:14px;font-size:.58rem;color:var(--gold);opacity:0;transition:opacity .2s;pointer-events:none}
 .sidebar-logo:hover .logo-upload-hint{opacity:1}
 .sidebar-nav{padding:1rem 0}
 .nav-item{display:flex;align-items:center;gap:10px;padding:11px 1.5rem;color:rgba(255,255,255,.6);font-size:.88rem;cursor:pointer;transition:background .2s,color .2s;user-select:none}
@@ -40,22 +38,16 @@ body{font-family:'DM Sans',sans-serif;background:#f0f0e8;min-height:100vh}
 .sidebar-footer{padding:1.5rem;border-top:1px solid rgba(255,255,255,.08)}
 .sidebar-footer a{color:rgba(255,255,255,.4);font-size:.8rem;text-decoration:none;display:block;margin-bottom:.4rem;transition:color .2s}
 .sidebar-footer a:hover{color:var(--green)}
-
-/* MAIN */
 .main-content{flex:1;padding:2.5rem;overflow-y:auto}
 .page-header{margin-bottom:2rem;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .page-header-text h1{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--forest);margin-bottom:.3rem}
 .page-header-text p{color:var(--text-muted);font-size:.92rem}
 .tab-content{display:none}
 .tab-content.active{display:block}
-
-/* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-bottom:2.5rem}
 .stat-card{background:#fff;border-radius:14px;padding:1.4rem;box-shadow:0 2px 12px rgba(26,61,10,.06);border-top:3px solid var(--green)}
 .stat-card .n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--forest);margin-bottom:.2rem}
 .stat-card .l{font-size:.78rem;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase}
-
-/* TABLE */
 .table-wrap{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(26,61,10,.06);overflow:hidden}
 .table-toolbar{padding:1.2rem 1.5rem;border-bottom:1px solid #f0f0e8;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .table-toolbar h3{font-size:1rem;font-weight:700;color:var(--forest);flex:1}
@@ -63,7 +55,7 @@ body{font-family:'DM Sans',sans-serif;background:#f0f0e8;min-height:100vh}
 .search-input:focus{border-color:var(--green)}
 .btn-export{background:var(--forest);color:#fff;padding:9px 18px;border:none;border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;display:flex;align-items:center;gap:6px}
 .btn-export:hover{background:#2d5a1b}
-.btn-clear{background:transparent;color:var(--danger);padding:9px 16px;border:1.5px solid var(--danger);border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-clear{background:transparent;color:var(--danger);padding:9px 16px;border:1.5px solid var(--danger);border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
 .btn-clear:hover{background:var(--danger);color:#fff}
 .table-container{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.85rem}
@@ -72,21 +64,13 @@ th{padding:10px 14px;text-align:left;font-weight:700;color:var(--forest);font-si
 td{padding:12px 14px;border-bottom:1px solid #f5f5ef;color:var(--text-muted);vertical-align:top;max-width:200px;word-break:break-word}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#fafaf2}
-.role-badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.05em}
-.role-Farmer{background:#e8f5e9;color:#2d5a1b}
-.role-Government{background:#e3f2fd;color:#1565c0}
-.role-NGO{background:#f3e5f5;color:#6a1b9a}
-.role-Corporate{background:#fff3e0;color:#e65100}
-.role-Investor{background:#fce4ec;color:#880e4f}
-.role-Media{background:#f5f5f5;color:#424242}
-.role-Researcher{background:#e0f2f1;color:#004d40}
+.role-badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:.68rem;font-weight:700}
+.role-Farmer{background:#e8f5e9;color:#2d5a1b}.role-Government{background:#e3f2fd;color:#1565c0}.role-NGO{background:#f3e5f5;color:#6a1b9a}.role-Corporate{background:#fff3e0;color:#e65100}.role-Investor{background:#fce4ec;color:#880e4f}.role-Media{background:#f5f5f5;color:#424242}.role-Researcher{background:#e0f2f1;color:#004d40}
 .empty-state{padding:3rem;text-align:center;color:var(--text-muted)}
 .empty-state h4{font-size:1.1rem;margin-bottom:.4rem;color:var(--forest)}
-
-/* CARDS GRID */
 .products-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
 .prod-admin-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(26,61,10,.06)}
-.prod-admin-img{height:160px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.prod-admin-img{height:160px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .prod-admin-img img{width:100%;height:100%;object-fit:cover}
 .prod-admin-img .no-img{opacity:.35;font-size:.75rem;color:var(--forest);text-align:center}
 .prod-admin-body{padding:1rem}
@@ -98,29 +82,18 @@ tr:hover td{background:#fafaf2}
 .upload-zone strong{color:var(--brown);font-size:.82rem}
 .img-actions{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
 .btn-sm{padding:6px 12px;border-radius:6px;border:none;font-size:.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-sm-green{background:var(--green);color:#fff}
-.btn-sm-green:hover{background:#3d9140}
-.btn-sm-red{background:transparent;color:var(--danger);border:1px solid var(--danger)}
-.btn-sm-red:hover{background:var(--danger);color:#fff}
-.btn-sm-gold{background:var(--gold);color:#fff}
-.btn-sm-gold:hover{background:#b08a2a}
+.btn-sm-green{background:var(--green);color:#fff}.btn-sm-green:hover{background:#3d9140}
+.btn-sm-red{background:transparent;color:var(--danger);border:1px solid var(--danger)}.btn-sm-red:hover{background:var(--danger);color:#fff}
 .img-set-indicator{font-size:.72rem;color:var(--green);font-weight:600;margin-top:4px;display:none}
 .img-set-indicator.show{display:block}
-
-/* PRODUCT NAME EDIT */
 .prod-name-edit{display:none;margin-bottom:.6rem}
 .prod-name-edit input{width:100%;border:1.5px solid var(--green);border-radius:6px;padding:6px 10px;font-size:.88rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--forest)}
 .prod-name-display{cursor:pointer;margin-bottom:.8rem}
-.prod-name-display:hover{text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--gold)}
+.prod-name-display:hover{text-decoration:underline dotted var(--gold)}
 .edit-name-hint{font-size:.65rem;color:var(--text-muted);margin-bottom:.5rem}
-
-/* ADD PRODUCT CARD */
-.add-product-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(26,61,10,.06);border:2px dashed var(--green);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px;cursor:pointer;transition:background .2s}
+.add-product-card{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(26,61,10,.06);border:2px dashed var(--green);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px;cursor:pointer;transition:background .2s}
 .add-product-card:hover{background:#f0faf0}
-.add-product-card svg{opacity:.4;margin-bottom:.8rem}
-.add-product-card p{font-size:.88rem;color:var(--text-muted);font-weight:600}
-
-/* MODAL */
+.add-product-card p{font-size:.88rem;color:var(--text-muted);font-weight:600;margin-top:.5rem}
 .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:800;display:flex;align-items:center;justify-content:center;padding:1rem}
 .modal-backdrop.hidden{display:none}
 .modal{background:#fff;border-radius:18px;padding:2rem;max-width:460px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,.25)}
@@ -130,98 +103,83 @@ tr:hover td{background:#fafaf2}
 .modal input:focus,.modal textarea:focus{border-color:var(--green)}
 .modal textarea{height:80px;resize:vertical}
 .modal-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:.5rem}
-.btn-primary{background:var(--forest);color:#fff;padding:10px 22px;border:none;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-primary{background:var(--forest);color:#fff;padding:10px 22px;border:none;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
 .btn-primary:hover{background:#2d5a1b}
 .btn-secondary{background:transparent;color:var(--text-muted);padding:10px 18px;border:1.5px solid #ddd;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
-
-/* SETTINGS */
 .settings-section{background:#fff;border-radius:16px;padding:2rem;box-shadow:0 2px 12px rgba(26,61,10,.06);margin-bottom:1.5rem}
 .settings-section h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--forest);margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid #f0f0e8}
 .setting-row{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid #f9f9f4;gap:1rem;flex-wrap:wrap}
 .setting-row:last-child{border-bottom:none}
 .setting-label{font-size:.9rem;font-weight:600;color:#333;flex-shrink:0}
-.setting-value{font-size:.85rem;color:var(--text-muted);text-align:right}
 .setting-input{border:1.5px solid #e0e0d0;border-radius:7px;padding:8px 12px;font-size:.88rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;width:220px}
 .setting-input:focus{border-color:var(--green)}
-.btn-save-setting{background:var(--green);color:#fff;padding:7px 16px;border:none;border-radius:7px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;white-space:nowrap}
+.btn-save-setting{background:var(--green);color:#fff;padding:7px 16px;border:none;border-radius:7px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
 .btn-save-setting:hover{background:#3d9140}
-.save-toast{display:none;font-size:.78rem;color:var(--green);font-weight:600;margin-left:.5rem}
+.save-toast{display:none;font-size:.78rem;color:var(--green);font-weight:600;margin-left:.3rem}
 .save-toast.show{display:inline}
-
-/* GALLERY SECTION */
-.gallery-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;margin-top:1rem}
+.gallery-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem}
 .gallery-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(26,61,10,.06)}
-.gallery-card-img{height:140px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.gallery-card-img{height:130px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#e8f5e9}
 .gallery-card-img img{width:100%;height:100%;object-fit:cover}
-.gallery-card-body{padding:.8rem}
-.gallery-card-body p{font-size:.78rem;color:var(--text-muted);margin-bottom:.5rem}
-.gallery-card-add{border:2px dashed #c8a84b;border-radius:12px;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;position:relative;background:#fffdf5}
-.gallery-card-add:hover{background:#fff9e6}
-.gallery-card-add input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.gallery-card-add p{font-size:.8rem;color:var(--text-muted);margin-top:.4rem;font-weight:600;pointer-events:none}
-.gallery-label-row{display:flex;align-items:center;gap:.5rem}
-
-/* LOGO SECTION */
-.logo-preview-box{width:100px;height:100px;border-radius:12px;overflow:hidden;background:#e8f5e9;border:2px solid #c8e6c9;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;position:relative}
+.gallery-card-body{padding:.7rem}
+.gallery-card-body p{font-size:.75rem;color:var(--text-muted);margin-bottom:.4rem}
+.gallery-upload-btn{display:inline-flex;align-items:center;gap:.5rem;border:2px dashed var(--gold);border-radius:8px;padding:9px 16px;cursor:pointer;transition:background .2s;position:relative;background:#fffdf5;margin-top:1rem}
+.gallery-upload-btn:hover{background:#fff9e6}
+.gallery-upload-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.gallery-upload-btn strong{font-size:.82rem;color:var(--brown)}
+.logo-preview-box{width:90px;height:90px;border-radius:12px;overflow:hidden;background:#e8f5e9;border:2px solid #c8e6c9;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
 .logo-preview-box img{width:100%;height:100%;object-fit:contain}
-.logo-upload-area{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .logo-file-zone{border:2px dashed var(--gold);border-radius:10px;padding:16px 24px;text-align:center;cursor:pointer;transition:background .2s;position:relative;display:inline-block}
 .logo-file-zone:hover{background:#fff9e6}
 .logo-file-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.logo-file-zone p{font-size:.78rem;color:var(--text-muted);margin-top:.3rem}
-
-@media(max-width:768px){
-  .sidebar{display:none}
-  .stats-row{grid-template-columns:1fr 1fr}
-  .main-content{padding:1.5rem}
-}
+.logo-file-zone p{font-size:.75rem;color:var(--text-muted);margin-top:.3rem}
+.sync-banner{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:.8rem 1.2rem;font-size:.82rem;color:#2d5a1b;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.sync-banner.error{background:#ffeaea;border-color:#ef9a9a;color:#c62828}
+.spinner{width:16px;height:16px;border:2px solid rgba(0,0,0,.1);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.sidebar{display:none}.stats-row{grid-template-columns:1fr 1fr}.main-content{padding:1.5rem}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
-    <div id="loginLogoWrap" style="margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;overflow:hidden;background:#1a3d0a;border:2px solid #4CAF50"></div>
+    <div id="loginLogoWrap" style="margin:0 auto 1rem;width:52px;height:52px;border-radius:50%;overflow:hidden;background:#1a3d0a;border:2px solid #4CAF50;display:flex;align-items:center;justify-content:center">
+      <svg width="26" height="26" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>
+    </div>
     <h2>AgroTechners Admin</h2>
     <p>Enter your password to access the dashboard</p>
     <p class="login-err" id="loginErr">Incorrect password. Try again.</p>
     <input type="password" id="loginPwd" placeholder="Password" autocomplete="current-password">
     <button id="loginBtn">Access Dashboard</button>
-    <p style="margin-top:1rem;font-size:.75rem;color:#bbb">Default password: <strong>agro2025</strong></p>
+    <p style="margin-top:1rem;font-size:.75rem;color:#bbb">Default: <strong>agro2025</strong></p>
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
 <div class="admin-wrap" id="adminPanel" style="display:none">
-  <!-- Sidebar -->
   <div class="sidebar">
     <div class="sidebar-logo" id="sidebarLogoArea" title="Click to change logo">
       <div class="logo-img-wrap" id="sidebarLogoWrap">
         <svg width="22" height="22" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>
       </div>
       <div><span>AgroTechners<br>Admin</span><small>Dashboard</small></div>
-      <input type="file" accept="image/*" id="sidebarLogoInput" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">
+      <input type="file" accept="image/*" id="sidebarLogoInput" style="position:absolute;inset:0;opacity:0;cursor:pointer">
       <span class="logo-upload-hint">Click to upload logo</span>
     </div>
     <div class="sidebar-nav">
       <div class="nav-section-label">Analytics</div>
       <div class="nav-item active" data-tab="enquiries">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 6h14" stroke="currentColor" stroke-width="1"/></svg>
-        Enquiries
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 6h14" stroke="currentColor" stroke-width="1"/></svg>Enquiries
       </div>
       <div class="nav-section-label">Content</div>
       <div class="nav-item" data-tab="products-admin">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="8.5" y="2" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="8.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/></svg>
-        Product Images
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="8.5" y="2" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="8.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/></svg>Product Images
       </div>
       <div class="nav-item" data-tab="gallery-admin">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/><circle cx="5.5" cy="7.5" r="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M1 11l4-4 3 3 2-2 5 5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-        Land Gallery
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/><circle cx="5.5" cy="7.5" r="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M1 11l4-4 3 3 2-2 5 5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>Land Gallery
       </div>
       <div class="nav-item" data-tab="settings">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.1 3.1l1.4 1.4M11.5 11.5l1.4 1.4M3.1 12.9l1.4-1.4M11.5 4.5l1.4-1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        Settings
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.1 3.1l1.4 1.4M11.5 11.5l1.4 1.4M3.1 12.9l1.4-1.4M11.5 4.5l1.4-1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Settings
       </div>
     </div>
     <div class="sidebar-footer">
@@ -231,118 +189,82 @@ tr:hover td{background:#fafaf2}
     </div>
   </div>
 
-  <!-- Main -->
   <div class="main-content">
 
-    <!-- ENQUIRIES TAB -->
+    <!-- ENQUIRIES -->
     <div class="tab-content active" id="tab-enquiries">
       <div class="page-header">
-        <div class="page-header-text">
-          <h1>Enquiry Dashboard</h1>
-          <p>All contact form submissions from your website.</p>
-        </div>
+        <div class="page-header-text"><h1>Enquiry Dashboard</h1><p>All contact form submissions — synced live from Supabase.</p></div>
       </div>
+      <div id="syncBanner" class="sync-banner"><div class="spinner"></div> Loading enquiries from database…</div>
       <div class="stats-row">
-        <div class="stat-card"><div class="n" id="statTotal">0</div><div class="l">Total Enquiries</div></div>
-        <div class="stat-card"><div class="n" id="statFarmer">0</div><div class="l">Farmers</div></div>
-        <div class="stat-card"><div class="n" id="statGovt">0</div><div class="l">Government</div></div>
-        <div class="stat-card"><div class="n" id="statOther">0</div><div class="l">Others (NGO/Corp/Inv)</div></div>
+        <div class="stat-card"><div class="n" id="statTotal">—</div><div class="l">Total Enquiries</div></div>
+        <div class="stat-card"><div class="n" id="statFarmer">—</div><div class="l">Farmers</div></div>
+        <div class="stat-card"><div class="n" id="statGovt">—</div><div class="l">Government</div></div>
+        <div class="stat-card"><div class="n" id="statOther">—</div><div class="l">Others</div></div>
       </div>
       <div class="table-wrap">
         <div class="table-toolbar">
           <h3>All Submissions</h3>
-          <input type="text" class="search-input" id="searchInput" placeholder="Search by name, email, role...">
-          <button class="btn-export" id="exportBtn">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v9M4 7l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 11v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-            Export CSV
-          </button>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search name, email, role…">
+          <button class="btn-export" id="exportBtn">⬇ Export CSV</button>
           <button class="btn-clear" id="clearBtn">Clear All</button>
         </div>
         <div class="table-container">
-          <table>
-            <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>State/District</th><th>Message</th><th>Date</th></tr></thead>
-            <tbody id="enquiryTbody"></tbody>
-          </table>
-          <div class="empty-state" id="emptyState" style="display:none">
-            <h4>No enquiries yet</h4>
-            <p>Submissions from your contact form will appear here.</p>
-          </div>
+          <table><thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>District</th><th>Message</th><th>Date</th></tr></thead>
+          <tbody id="enquiryTbody"></tbody></table>
+          <div class="empty-state" id="emptyState" style="display:none"><h4>No enquiries yet</h4><p>Submissions will appear here.</p></div>
         </div>
       </div>
     </div>
 
-    <!-- PRODUCTS ADMIN TAB -->
+    <!-- PRODUCTS ADMIN -->
     <div class="tab-content" id="tab-products-admin">
       <div class="page-header">
-        <div class="page-header-text">
-          <h1>Product Images</h1>
-          <p>Upload images, rename products, or add new ones. Click a product name to rename it.</p>
-        </div>
-        <button class="btn-export" id="addProductBtn" style="align-self:flex-start">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          Add Product
-        </button>
+        <div class="page-header-text"><h1>Product Images</h1><p>Upload images and rename products. Changes save to Supabase instantly.</p></div>
+        <button class="btn-export" id="addProductBtn">+ Add Product</button>
       </div>
       <div class="products-admin-grid" id="prodAdminGrid"></div>
     </div>
 
-    <!-- GALLERY ADMIN TAB -->
+    <!-- GALLERY -->
     <div class="tab-content" id="tab-gallery-admin">
-      <div class="page-header">
-        <div class="page-header-text">
-          <h1>Land Gallery</h1>
-          <p>Upload comparison photos of barren land and AgroTechners treated land.</p>
-        </div>
-      </div>
-
+      <div class="page-header"><div class="page-header-text"><h1>Land Gallery</h1><p>Upload before/after land photos. Visible to all website visitors.</p></div></div>
       <div class="settings-section">
         <h3>🌾 Before Treatment — Barren Land</h3>
-        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem">Photos showing land before AgroTechners treatment is applied.</p>
         <div class="gallery-admin-grid" id="barrenGrid"></div>
-        <div style="margin-top:1.2rem">
-          <label class="gallery-card-add" style="display:inline-flex;flex-direction:row;gap:.7rem;padding:10px 18px;width:auto;min-height:unset;border-radius:8px">
-            <input type="file" accept="image/*" multiple id="barrenUpload">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M4 6l4-4 4 4" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <strong style="font-size:.82rem;color:var(--brown)">Upload Barren Land Photos</strong>
-          </label>
-        </div>
+        <label class="gallery-upload-btn">
+          <input type="file" accept="image/*" multiple id="barrenUpload">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M4 6l4-4 4 4" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <strong>Upload Barren Land Photos</strong>
+        </label>
       </div>
-
       <div class="settings-section">
         <h3>🌿 After Treatment — AgroTechners Land</h3>
-        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1rem">Photos showing transformed, fertile land after AgroTechners treatment.</p>
         <div class="gallery-admin-grid" id="aggroGrid"></div>
-        <div style="margin-top:1.2rem">
-          <label class="gallery-card-add" style="display:inline-flex;flex-direction:row;gap:.7rem;padding:10px 18px;width:auto;min-height:unset;border-radius:8px">
-            <input type="file" accept="image/*" multiple id="aggroUpload">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M4 6l4-4 4 4" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <strong style="font-size:.82rem;color:var(--brown)">Upload AgroTechners Land Photos</strong>
-          </label>
-        </div>
+        <label class="gallery-upload-btn">
+          <input type="file" accept="image/*" multiple id="aggroUpload">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M4 6l4-4 4 4" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <strong>Upload AgroTechners Land Photos</strong>
+        </label>
       </div>
     </div>
 
-    <!-- SETTINGS TAB -->
+    <!-- SETTINGS -->
     <div class="tab-content" id="tab-settings">
-      <div class="page-header">
-        <div class="page-header-text">
-          <h1>Settings</h1>
-          <p>Update contact details, patent information, and site data.</p>
-        </div>
-      </div>
+      <div class="page-header"><div class="page-header-text"><h1>Settings</h1><p>All changes save to Supabase and appear on the website for everyone.</p></div></div>
 
-      <!-- LOGO UPLOAD -->
       <div class="settings-section">
         <h3>Logo</h3>
-        <div class="logo-upload-area">
+        <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
           <div class="logo-preview-box" id="logoPreviewBox">
-            <svg width="40" height="40" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>
+            <svg width="36" height="36" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>
           </div>
           <div>
             <label class="logo-file-zone">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3v12M6 8l5-5 5 5" stroke="#c8a84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 16v2a2 2 0 002 2h14a2 2 0 002-2v-2" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M11 3v12M6 8l5-5 5 5" stroke="#c8a84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 16v2a2 2 0 002 2h14a2 2 0 002-2v-2" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
               <strong style="font-size:.88rem;color:var(--brown);display:block;margin-top:.3rem">Upload Logo</strong>
-              <p>PNG, SVG, JPG — recommended square, min 200×200px</p>
+              <p>PNG, SVG, JPG — square recommended</p>
               <input type="file" accept="image/*" id="logoUploadInput">
             </label>
             <button class="btn-sm btn-sm-red" id="removeLogoBtn" style="margin-top:.6rem;display:none">Remove Logo</button>
@@ -352,99 +274,29 @@ tr:hover td{background:#fafaf2}
 
       <div class="settings-section">
         <h3>Contact Details</h3>
-        <div class="setting-row">
-          <span class="setting-label">WhatsApp Number</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="text" class="setting-input" id="set-whatsapp" placeholder="+91 70577 78505">
-            <button class="btn-save-setting" data-key="agro_contact_whatsapp" data-field="set-whatsapp">Save</button>
-            <span class="save-toast" id="toast-whatsapp">✓ Saved</span>
-          </div>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Email</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="email" class="setting-input" id="set-email" placeholder="info@agrotechners.com">
-            <button class="btn-save-setting" data-key="agro_contact_email" data-field="set-email">Save</button>
-            <span class="save-toast" id="toast-email">✓ Saved</span>
-          </div>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Location</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="text" class="setting-input" id="set-location" placeholder="Dhule, Maharashtra, India">
-            <button class="btn-save-setting" data-key="agro_contact_location" data-field="set-location">Save</button>
-            <span class="save-toast" id="toast-location">✓ Saved</span>
-          </div>
-        </div>
+        <div class="setting-row"><span class="setting-label">WhatsApp Number</span><div style="display:flex;align-items:center;gap:.5rem"><input type="text" class="setting-input" id="set-whatsapp"><button class="btn-save-setting" data-key="contact_whatsapp" data-field="set-whatsapp">Save</button><span class="save-toast" id="toast-whatsapp">✓ Saved</span></div></div>
+        <div class="setting-row"><span class="setting-label">Email</span><div style="display:flex;align-items:center;gap:.5rem"><input type="email" class="setting-input" id="set-email"><button class="btn-save-setting" data-key="contact_email" data-field="set-email">Save</button><span class="save-toast" id="toast-email">✓ Saved</span></div></div>
+        <div class="setting-row"><span class="setting-label">Location</span><div style="display:flex;align-items:center;gap:.5rem"><input type="text" class="setting-input" id="set-location"><button class="btn-save-setting" data-key="contact_location" data-field="set-location">Save</button><span class="save-toast" id="toast-location">✓ Saved</span></div></div>
       </div>
 
       <div class="settings-section">
         <h3>Patent Details</h3>
-        <div class="setting-row">
-          <span class="setting-label">Patent Number</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="text" class="setting-input" id="set-patent-num" placeholder="WO 2025/057241 A1">
-            <button class="btn-save-setting" data-key="agro_patent_num" data-field="set-patent-num">Save</button>
-            <span class="save-toast" id="toast-set-patent-num">✓ Saved</span>
-          </div>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Filed</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="text" class="setting-input" id="set-patent-filed" placeholder="September 2023">
-            <button class="btn-save-setting" data-key="agro_patent_filed" data-field="set-patent-filed">Save</button>
-            <span class="save-toast" id="toast-set-patent-filed">✓ Saved</span>
-          </div>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Published</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="text" class="setting-input" id="set-patent-pub" placeholder="March 2025">
-            <button class="btn-save-setting" data-key="agro_patent_pub" data-field="set-patent-pub">Save</button>
-            <span class="save-toast" id="toast-set-patent-pub">✓ Saved</span>
-          </div>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Inventors</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="text" class="setting-input" id="set-inventors" placeholder="Shashank & Urmila Joshi">
-            <button class="btn-save-setting" data-key="agro_patent_inventors" data-field="set-inventors">Save</button>
-            <span class="save-toast" id="toast-set-inventors">✓ Saved</span>
-          </div>
-        </div>
+        <div class="setting-row"><span class="setting-label">Patent Number</span><div style="display:flex;align-items:center;gap:.5rem"><input type="text" class="setting-input" id="set-patent-num"><button class="btn-save-setting" data-key="patent_num" data-field="set-patent-num">Save</button><span class="save-toast" id="toast-set-patent-num">✓ Saved</span></div></div>
+        <div class="setting-row"><span class="setting-label">Filed</span><div style="display:flex;align-items:center;gap:.5rem"><input type="text" class="setting-input" id="set-patent-filed"><button class="btn-save-setting" data-key="patent_filed" data-field="set-patent-filed">Save</button><span class="save-toast" id="toast-set-patent-filed">✓ Saved</span></div></div>
+        <div class="setting-row"><span class="setting-label">Published</span><div style="display:flex;align-items:center;gap:.5rem"><input type="text" class="setting-input" id="set-patent-pub"><button class="btn-save-setting" data-key="patent_pub" data-field="set-patent-pub">Save</button><span class="save-toast" id="toast-set-patent-pub">✓ Saved</span></div></div>
+        <div class="setting-row"><span class="setting-label">Inventors</span><div style="display:flex;align-items:center;gap:.5rem"><input type="text" class="setting-input" id="set-inventors"><button class="btn-save-setting" data-key="patent_inventors" data-field="set-inventors">Save</button><span class="save-toast" id="toast-set-inventors">✓ Saved</span></div></div>
       </div>
 
       <div class="settings-section">
         <h3>Data</h3>
-        <div class="setting-row">
-          <span class="setting-label">Total Enquiries Stored</span>
-          <span class="setting-value" id="settingCount">—</span>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Product Images Uploaded</span>
-          <span class="setting-value" id="settingImgCount">—</span>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Storage Used</span>
-          <span class="setting-value" id="settingStorage">—</span>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Export All Data</span>
-          <button class="btn-sm btn-sm-green" onclick="document.getElementById('exportBtn').click()">Download CSV</button>
-        </div>
-        <div class="setting-row">
-          <span class="setting-label">Admin Password</span>
-          <div style="display:flex;align-items:center;gap:.5rem">
-            <input type="password" class="setting-input" id="set-new-pwd" placeholder="New password">
-            <button class="btn-save-setting" id="changePwdBtn">Change</button>
-            <span class="save-toast" id="toast-pwd">✓ Updated</span>
-          </div>
-        </div>
+        <div class="setting-row"><span class="setting-label">Total Enquiries</span><span class="setting-value" id="settingCount">—</span></div>
+        <div class="setting-row"><span class="setting-label">Export All</span><button class="btn-sm btn-sm-green" onclick="document.getElementById('exportBtn').click()">Download CSV</button></div>
+        <div class="setting-row"><span class="setting-label">Admin Password</span><div style="display:flex;align-items:center;gap:.5rem"><input type="password" class="setting-input" id="set-new-pwd" placeholder="New password"><button class="btn-save-setting" id="changePwdBtn">Change</button><span class="save-toast" id="toast-pwd">✓ Updated</span></div></div>
       </div>
     </div>
 
-  </div><!-- /main-content -->
-</div><!-- /admin-wrap -->
+  </div>
+</div>
 
 <!-- ADD PRODUCT MODAL -->
 <div class="modal-backdrop hidden" id="addProductModal">
@@ -453,7 +305,7 @@ tr:hover td{background:#fafaf2}
     <label>Product Name</label>
     <input type="text" id="newProductName" placeholder="e.g. BioGrow Premium Liquid">
     <label>Description (optional)</label>
-    <textarea id="newProductDesc" placeholder="Brief description of the product..."></textarea>
+    <textarea id="newProductDesc" placeholder="Brief description…"></textarea>
     <div class="modal-actions">
       <button class="btn-secondary" id="cancelAddProduct">Cancel</button>
       <button class="btn-primary" id="confirmAddProduct">Add Product</button>
@@ -462,412 +314,398 @@ tr:hover td{background:#fafaf2}
 </div>
 
 <script>
+// ─── SUPABASE CONFIG ───
+const SUPA_URL = "https://rzjefepxcydbrhmkghlk.supabase.co";
+const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6amVmZXB4Y3lkYnJobWtnaGxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MDk3MzAsImV4cCI6MjA5ODE4NTczMH0.U0YHfyAxhtfNOqbbGF7aAkmWC091NlaQSoei5BrWC40";
+const H = { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'application/json' };
+
+async function sbGet(key) {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/agro_settings?key=eq.${key}&select=value`, { headers: H });
+    const d = await r.json(); return d[0]?.value ?? null;
+  } catch { return null; }
+}
+async function sbSet(key, value) {
+  await fetch(`${SUPA_URL}/rest/v1/agro_settings`, {
+    method: 'POST', headers: { ...H, Prefer: 'resolution=merge-duplicates' },
+    body: JSON.stringify({ key, value, updated_at: new Date().toISOString() })
+  });
+}
+async function sbGetAll() {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/agro_settings?select=key,value`, { headers: H });
+    const rows = await r.json(); const obj = {};
+    rows.forEach(r => obj[r.key] = r.value); return obj;
+  } catch { return {}; }
+}
+async function sbGetEnquiries() {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/agro_enquiries?select=*&order=created_at.desc`, { headers: H });
+    return await r.json();
+  } catch { return []; }
+}
+async function sbDeleteEnquiries() {
+  await fetch(`${SUPA_URL}/rest/v1/agro_enquiries?id=gte.0`, { method: 'DELETE', headers: H });
+}
+
 // ─── AUTH ───
-const PWD_KEY='agro_pwd';
-const DEFAULT_PWD='agro2025';
-function getStoredPwd(){return localStorage.getItem(PWD_KEY)||DEFAULT_PWD}
+const PWD_KEY = 'agro_pwd';
+const DEFAULT_PWD = 'agro2025';
+function getPwd() { return localStorage.getItem(PWD_KEY) || DEFAULT_PWD; }
 
-// Init login logo
-(function(){
-  const logo=localStorage.getItem('agro_logo');
-  const wrap=document.getElementById('loginLogoWrap');
-  if(logo){
-    const img=document.createElement('img');
-    img.src=logo;img.style.cssText='width:100%;height:100%;object-fit:contain';
-    wrap.appendChild(img);
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+document.getElementById('loginPwd').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+async function doLogin() {
+  const pwd = document.getElementById('loginPwd').value;
+  if (pwd === getPwd()) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'flex';
+    await initDashboard();
   } else {
-    wrap.innerHTML='<svg width="26" height="26" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>';
-  }
-})();
-
-document.getElementById('loginBtn').addEventListener('click',doLogin);
-document.getElementById('loginPwd').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
-function doLogin(){
-  const pwd=document.getElementById('loginPwd').value;
-  const err=document.getElementById('loginErr');
-  if(pwd===getStoredPwd()){
-    document.getElementById('loginScreen').style.display='none';
-    document.getElementById('adminPanel').style.display='flex';
-    initDashboard();
-  } else {
-    err.classList.add('show');
-    document.getElementById('loginPwd').value='';
+    document.getElementById('loginErr').classList.add('show');
+    document.getElementById('loginPwd').value = '';
   }
 }
-document.getElementById('logoutBtn').addEventListener('click',e=>{e.preventDefault();location.reload()});
+document.getElementById('logoutBtn').addEventListener('click', e => { e.preventDefault(); location.reload(); });
 
-// ─── TAB NAV ───
-document.querySelectorAll('.nav-item[data-tab]').forEach(item=>{
-  item.addEventListener('click',()=>{
-    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+// ─── TABS ───
+document.querySelectorAll('.nav-item[data-tab]').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     item.classList.add('active');
-    document.getElementById('tab-'+item.dataset.tab).classList.add('active');
-    if(item.dataset.tab==='settings')updateSettings();
+    document.getElementById('tab-' + item.dataset.tab).classList.add('active');
+    if (item.dataset.tab === 'settings') loadSettingsTab();
   });
 });
 
-// ─── LOGO UPLOAD ───
-function applyLogo(data){
-  // Sidebar
-  const wrap=document.getElementById('sidebarLogoWrap');
-  wrap.innerHTML=`<img src="${data}" alt="Logo" style="width:100%;height:100%;object-fit:contain">`;
-  // Settings preview
-  const prev=document.getElementById('logoPreviewBox');
-  prev.innerHTML=`<img src="${data}" alt="Logo" style="width:100%;height:100%;object-fit:contain">`;
-  document.getElementById('removeLogoBtn').style.display='inline-block';
+// ─── INIT ───
+let allSettings = {};
+let allEnquiries = [];
+
+async function initDashboard() {
+  allSettings = await sbGetAll();
+  applyLogo(allSettings.logo || '');
+  await loadEnquiries();
+  await renderProductAdmin();
+  renderGallery();
+  loadSettingsTab();
 }
 
-function loadLogo(){
-  const data=localStorage.getItem('agro_logo');
-  if(data)applyLogo(data);
+// ─── LOGO ───
+function applyLogo(data) {
+  const wrap = document.getElementById('sidebarLogoWrap');
+  const prev = document.getElementById('logoPreviewBox');
+  const rmBtn = document.getElementById('removeLogoBtn');
+  if (data) {
+    wrap.innerHTML = `<img src="${data}" style="width:100%;height:100%;object-fit:contain">`;
+    prev.innerHTML = `<img src="${data}" style="width:100%;height:100%;object-fit:contain">`;
+    rmBtn.style.display = 'inline-block';
+  } else {
+    wrap.innerHTML = '<svg width="22" height="22" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>';
+    prev.innerHTML = '<svg width="36" height="36" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>';
+    rmBtn.style.display = 'none';
+  }
 }
 
-document.getElementById('sidebarLogoInput').addEventListener('change',function(){
-  const f=this.files[0];if(!f)return;
-  if(f.size>2*1024*1024){alert('Logo too large. Please use under 2MB.');return;}
-  const r=new FileReader();
-  r.onload=e=>{localStorage.setItem('agro_logo',e.target.result);applyLogo(e.target.result);};
-  r.readAsDataURL(f);
-});
+function handleLogoUpload(file) {
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { alert('Logo too large. Max 2MB.'); return; }
+  const r = new FileReader();
+  r.onload = async e => {
+    await sbSet('logo', e.target.result);
+    allSettings.logo = e.target.result;
+    applyLogo(e.target.result);
+  };
+  r.readAsDataURL(file);
+}
 
-document.getElementById('logoUploadInput').addEventListener('change',function(){
-  const f=this.files[0];if(!f)return;
-  if(f.size>2*1024*1024){alert('Logo too large. Please use under 2MB.');return;}
-  const r=new FileReader();
-  r.onload=e=>{localStorage.setItem('agro_logo',e.target.result);applyLogo(e.target.result);};
-  r.readAsDataURL(f);
-});
-
-document.getElementById('removeLogoBtn').addEventListener('click',()=>{
-  if(!confirm('Remove logo?'))return;
-  localStorage.removeItem('agro_logo');
-  document.getElementById('sidebarLogoWrap').innerHTML='<svg width="22" height="22" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>';
-  document.getElementById('logoPreviewBox').innerHTML='<svg width="40" height="40" viewBox="0 0 38 38" fill="none"><path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/><path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50"/><circle cx="19" cy="10" r="2.5" fill="#c8a84b"/></svg>';
-  document.getElementById('removeLogoBtn').style.display='none';
+document.getElementById('sidebarLogoInput').addEventListener('change', function () { handleLogoUpload(this.files[0]); });
+document.getElementById('logoUploadInput').addEventListener('change', function () { handleLogoUpload(this.files[0]); });
+document.getElementById('removeLogoBtn').addEventListener('click', async () => {
+  if (!confirm('Remove logo?')) return;
+  await sbSet('logo', '');
+  allSettings.logo = '';
+  applyLogo('');
 });
 
 // ─── ENQUIRIES ───
-function getEnquiries(){try{return JSON.parse(localStorage.getItem('agro_enquiries')||'[]')}catch{return[]}}
-
-function initDashboard(){
-  loadLogo();
-  renderEnquiries(getEnquiries());
-  renderProductAdmin();
-  renderGallery();
-  updateSettings();
-  loadContactSettings();
+async function loadEnquiries() {
+  const banner = document.getElementById('syncBanner');
+  banner.style.display = 'flex';
+  allEnquiries = await sbGetEnquiries();
+  banner.style.display = 'none';
+  renderEnquiries(allEnquiries);
+  document.getElementById('settingCount').textContent = allEnquiries.length + ' entries';
 }
 
-function renderEnquiries(data){
-  const tbody=document.getElementById('enquiryTbody');
-  const empty=document.getElementById('emptyState');
-  document.getElementById('statTotal').textContent=data.length;
-  document.getElementById('statFarmer').textContent=data.filter(d=>d.role==='Farmer').length;
-  document.getElementById('statGovt').textContent=data.filter(d=>d.role==='Government Official').length;
-  document.getElementById('statOther').textContent=data.filter(d=>!['Farmer','Government Official'].includes(d.role)).length;
-  if(!data.length){tbody.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  tbody.innerHTML=data.map((d,i)=>`
+function renderEnquiries(data) {
+  const tbody = document.getElementById('enquiryTbody');
+  const empty = document.getElementById('emptyState');
+  document.getElementById('statTotal').textContent = data.length;
+  document.getElementById('statFarmer').textContent = data.filter(d => d.role === 'Farmer').length;
+  document.getElementById('statGovt').textContent = data.filter(d => d.role === 'Government Official').length;
+  document.getElementById('statOther').textContent = data.filter(d => !['Farmer', 'Government Official'].includes(d.role)).length;
+  if (!data.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  tbody.innerHTML = data.map((d, i) => `
     <tr>
-      <td style="color:#bbb;font-size:.78rem">${data.length-i}</td>
+      <td style="color:#bbb;font-size:.78rem">${data.length - i}</td>
       <td style="font-weight:600;color:#1a1a0e">${esc(d.name)}</td>
       <td><a href="mailto:${esc(d.email)}" style="color:#4CAF50;text-decoration:none">${esc(d.email)}</a></td>
-      <td>${d.phone?`<a href="https://wa.me/91${d.phone.replace(/\D/g,'')}" target="_blank" style="color:#25D366;text-decoration:none">${esc(d.phone)}</a>`:'—'}</td>
+      <td>${d.phone ? `<a href="https://wa.me/91${d.phone.replace(/\D/g, '')}" target="_blank" style="color:#25D366;text-decoration:none">${esc(d.phone)}</a>` : '—'}</td>
       <td><span class="role-badge role-${esc(d.role.split(' ')[0])}">${esc(d.role)}</span></td>
-      <td>${esc(d.district||'—')}</td>
+      <td>${esc(d.district || '—')}</td>
       <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(d.message)}">${esc(d.message)}</td>
-      <td style="font-size:.78rem;white-space:nowrap">${new Date(d.timestamp).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}</td>
+      <td style="font-size:.78rem;white-space:nowrap">${new Date(d.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
     </tr>`).join('');
 }
 
-function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function esc(s) { if (!s) return ''; return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
-document.getElementById('searchInput').addEventListener('input',function(){
-  const q=this.value.toLowerCase();
-  const data=getEnquiries().filter(d=>
-    d.name.toLowerCase().includes(q)||d.email.toLowerCase().includes(q)||
-    (d.role||'').toLowerCase().includes(q)||(d.district||'').toLowerCase().includes(q)||
-    (d.message||'').toLowerCase().includes(q));
-  renderEnquiries(data);
+document.getElementById('searchInput').addEventListener('input', function () {
+  const q = this.value.toLowerCase();
+  renderEnquiries(allEnquiries.filter(d =>
+    d.name.toLowerCase().includes(q) || d.email.toLowerCase().includes(q) ||
+    (d.role || '').toLowerCase().includes(q) || (d.district || '').toLowerCase().includes(q) ||
+    (d.message || '').toLowerCase().includes(q)));
 });
 
-document.getElementById('exportBtn').addEventListener('click',()=>{
-  const data=getEnquiries();
-  if(!data.length){alert('No enquiries to export.');return;}
-  const cols=['ID','Name','Email','Phone','Role','State/District','Message','Timestamp'];
-  const rows=data.map(d=>[d.id,d.name,d.email,d.phone||'',d.role,d.district||'','"'+d.message.replace(/"/g,'""')+'"',d.timestamp]);
-  const csv=[cols.join(','),...rows.map(r=>r.join(','))].join('\n');
-  const blob=new Blob([csv],{type:'text/csv'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download=`agrotechners_enquiries_${new Date().toISOString().split('T')[0]}.csv`;a.click();
-  URL.revokeObjectURL(url);
+document.getElementById('exportBtn').addEventListener('click', () => {
+  if (!allEnquiries.length) { alert('No enquiries to export.'); return; }
+  const cols = ['ID', 'Name', 'Email', 'Phone', 'Role', 'District', 'Message', 'Date'];
+  const rows = allEnquiries.map(d => [d.id, d.name, d.email, d.phone || '', d.role, d.district || '', '"' + (d.message || '').replace(/"/g, '""') + '"', d.created_at]);
+  const csv = [cols.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = `agrotechners_enquiries_${new Date().toISOString().split('T')[0]}.csv`; a.click();
 });
 
-document.getElementById('clearBtn').addEventListener('click',()=>{
-  if(confirm('Delete ALL enquiries? This cannot be undone.')){localStorage.removeItem('agro_enquiries');renderEnquiries([]);}
+document.getElementById('clearBtn').addEventListener('click', async () => {
+  if (!confirm('Delete ALL enquiries from the database? Cannot be undone.')) return;
+  await sbDeleteEnquiries();
+  allEnquiries = [];
+  renderEnquiries([]);
+  document.getElementById('settingCount').textContent = '0 entries';
 });
 
 // ─── PRODUCTS ───
-const DEFAULT_PRODUCTS=[
-  {id:1,name:'Bamboosol Organic Liquid Fertilizer'},
-  {id:2,name:'BambooBoost Concentrated Fertilizer'},
-  {id:3,name:'CarbonSoil Premium Biochar'},
-  {id:4,name:'AquaChar Water Filtration Carbon'},
-  {id:5,name:'CarbonCred Biochar Carbon Credit Pack'},
-  {id:6,name:'DecarboGas Biomass Fuel Gas'},
-  {id:7,name:'AgroRestore Starter Pack'},
-  {id:8,name:'Government District Pack'},
+const DEFAULT_PRODUCTS = [
+  { id: 1, name: 'Bamboosol Organic Liquid Fertilizer' },
+  { id: 2, name: 'BambooBoost Concentrated Fertilizer' },
+  { id: 3, name: 'CarbonSoil Premium Biochar' },
+  { id: 4, name: 'AquaChar Water Filtration Carbon' },
+  { id: 5, name: 'CarbonCred Biochar Carbon Credit Pack' },
+  { id: 6, name: 'DecarboGas Biomass Fuel Gas' },
+  { id: 7, name: 'AgroRestore Starter Pack' },
+  { id: 8, name: 'Government District Pack' },
 ];
 
-function getProducts(){
-  try{const d=localStorage.getItem('agro_products');return d?JSON.parse(d):DEFAULT_PRODUCTS;}catch{return DEFAULT_PRODUCTS;}
+function getProducts() {
+  try { const d = allSettings.products; return d ? JSON.parse(d) : DEFAULT_PRODUCTS; } catch { return DEFAULT_PRODUCTS; }
 }
-function saveProducts(products){localStorage.setItem('agro_products',JSON.stringify(products));}
-function getNextProductId(){const p=getProducts();return p.length?Math.max(...p.map(x=>x.id))+1:1;}
+async function saveProducts(products) {
+  const str = JSON.stringify(products);
+  allSettings.products = str;
+  await sbSet('products', str);
+}
+function getProductImg(id) { return allSettings['prod_img_' + id] || ''; }
+async function setProductImg(id, data) { allSettings['prod_img_' + id] = data; await sbSet('prod_img_' + id, data); }
+async function clearProductImg(id) { allSettings['prod_img_' + id] = ''; await sbSet('prod_img_' + id, ''); }
+function getNextId() { const p = getProducts(); return p.length ? Math.max(...p.map(x => x.id)) + 1 : 1; }
 
-function getProductImg(id){try{return localStorage.getItem('prod_img_'+id)||''}catch{return''}}
-function setProductImg(id,data){localStorage.setItem('prod_img_'+id,data)}
-function clearProductImg(id){localStorage.removeItem('prod_img_'+id)}
-
-function renderProductAdmin(){
-  const grid=document.getElementById('prodAdminGrid');
-  const products=getProducts();
-  grid.innerHTML=products.map(p=>{
-    const img=getProductImg(p.id);
-    return`
-    <div class="prod-admin-card" id="pac-${p.id}">
-      <div class="prod-admin-img" id="pai-${p.id}">
-        ${img?`<img src="${img}" alt="${p.name}">`:`<div class="no-img"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="#1a3d0a" stroke-width="1.5" fill="none"/><circle cx="14" cy="17" r="3.5" stroke="#4CAF50" stroke-width="1.3" fill="none"/><path d="M4 26l8-7 6 5 5-4 13 9" stroke="#4CAF50" stroke-width="1.3" stroke-linecap="round"/></svg><br>No image</div>`}
-      </div>
+async function renderProductAdmin() {
+  const grid = document.getElementById('prodAdminGrid');
+  const products = getProducts();
+  grid.innerHTML = products.map(p => {
+    const img = getProductImg(p.id);
+    return `<div class="prod-admin-card" id="pac-${p.id}">
+      <div class="prod-admin-img">${img ? `<img src="${img}" alt="${p.name}">` : '<div class="no-img"><svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="#1a3d0a" stroke-width="1.5" fill="none"/><circle cx="14" cy="17" r="3.5" stroke="#4CAF50" stroke-width="1.3" fill="none"/><path d="M4 26l8-7 6 5 5-4 13 9" stroke="#4CAF50" stroke-width="1.3" stroke-linecap="round"/></svg><br>No image</div>'}</div>
       <div class="prod-admin-body">
         <p class="edit-name-hint">✏️ Click name to rename</p>
-        <h4 class="prod-name-display" data-id="${p.id}" title="Click to rename">${p.name}</h4>
+        <h4 class="prod-name-display" data-id="${p.id}">${esc(p.name)}</h4>
         <div class="prod-name-edit" id="name-edit-${p.id}">
-          <input type="text" value="${p.name.replace(/"/g,'&quot;')}" id="name-input-${p.id}">
+          <input type="text" value="${esc(p.name)}" id="name-input-${p.id}">
           <div class="img-actions" style="margin-top:.4rem">
-            <button class="btn-sm btn-sm-green" data-savename="${p.id}">Save Name</button>
+            <button class="btn-sm btn-sm-green" data-savename="${p.id}">Save</button>
             <button class="btn-sm" style="background:#eee;color:#555" data-cancelname="${p.id}">Cancel</button>
           </div>
         </div>
-        <div class="upload-zone" title="Click or drag image here">
+        <div class="upload-zone">
           <input type="file" accept="image/*" data-id="${p.id}" class="img-upload-input">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="display:block;margin:0 auto 4px"><path d="M10 3v10M6 7l4-4 4 4" stroke="#c8a84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 14v2a1 1 0 001 1h12a1 1 0 001-1v-2" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <strong>Upload image</strong>
-          <p>JPG, PNG, WebP — max 4MB</p>
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style="display:block;margin:0 auto 4px"><path d="M10 3v10M6 7l4-4 4 4" stroke="#c8a84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 14v2a1 1 0 001 1h12a1 1 0 001-1v-2" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <strong>Upload image</strong><p>JPG, PNG — max 4MB</p>
         </div>
         <div class="img-actions" style="margin-top:.7rem">
-          ${img?`<button class="btn-sm btn-sm-red" data-clear="${p.id}">Remove Image</button>`:''}
-          <button class="btn-sm" style="background:#ffeaea;color:#e53935;border:1px solid #e53935" data-deleteprod="${p.id}">Delete Product</button>
+          ${img ? `<button class="btn-sm btn-sm-red" data-clear="${p.id}">Remove Image</button>` : ''}
+          <button class="btn-sm" style="background:#ffeaea;color:#e53935;border:1px solid #e53935" data-deleteprod="${p.id}">Delete</button>
         </div>
-        <div class="img-set-indicator ${img?'show':''}" id="ind-${p.id}">✓ Image set</div>
+        <div class="img-set-indicator ${img ? 'show' : ''}" id="ind-${p.id}">✓ Image set</div>
       </div>
     </div>`;
   }).join('');
-
   bindProductEvents();
 }
 
-function bindProductEvents(){
-  // Name display click → show edit
-  document.querySelectorAll('.prod-name-display').forEach(el=>{
-    el.addEventListener('click',function(){
-      const id=this.dataset.id;
-      this.style.display='none';
-      document.getElementById('name-edit-'+id).style.display='block';
-      document.getElementById('name-input-'+id).focus();
+function bindProductEvents() {
+  document.querySelectorAll('.prod-name-display').forEach(el => {
+    el.addEventListener('click', function () {
+      this.style.display = 'none';
+      document.getElementById('name-edit-' + this.dataset.id).style.display = 'block';
+      document.getElementById('name-input-' + this.dataset.id).focus();
     });
   });
-
-  // Save name
-  document.querySelectorAll('[data-savename]').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      const id=parseInt(this.dataset.savename);
-      const val=document.getElementById('name-input-'+id).value.trim();
-      if(!val){alert('Product name cannot be empty.');return;}
-      const products=getProducts();
-      const p=products.find(x=>x.id===id);
-      if(p)p.name=val;
-      saveProducts(products);
-      renderProductAdmin();
+  document.querySelectorAll('[data-savename]').forEach(btn => {
+    btn.addEventListener('click', async function () {
+      const id = parseInt(this.dataset.savename);
+      const val = document.getElementById('name-input-' + id).value.trim();
+      if (!val) { alert('Name cannot be empty.'); return; }
+      const products = getProducts();
+      const p = products.find(x => x.id === id);
+      if (p) p.name = val;
+      await saveProducts(products);
+      await renderProductAdmin();
     });
   });
-
-  // Cancel name edit
-  document.querySelectorAll('[data-cancelname]').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      const id=this.dataset.cancelname;
-      document.getElementById('name-edit-'+id).style.display='none';
-      document.querySelector('.prod-name-display[data-id="'+id+'"]').style.display='block';
+  document.querySelectorAll('[data-cancelname]').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.getElementById('name-edit-' + this.dataset.cancelname).style.display = 'none';
+      document.querySelector('.prod-name-display[data-id="' + this.dataset.cancelname + '"]').style.display = 'block';
     });
   });
-
-  // Upload image
-  document.querySelectorAll('.img-upload-input').forEach(input=>{
-    input.addEventListener('change',function(){
-      const id=parseInt(this.dataset.id);
-      const file=this.files[0];if(!file)return;
-      if(file.size>4*1024*1024){alert('Image too large. Please use an image under 4MB.');return;}
-      const reader=new FileReader();
-      reader.onload=e=>{setProductImg(id,e.target.result);renderProductAdmin();};
-      reader.readAsDataURL(file);
+  document.querySelectorAll('.img-upload-input').forEach(input => {
+    input.addEventListener('change', async function () {
+      const id = parseInt(this.dataset.id);
+      const file = this.files[0]; if (!file) return;
+      if (file.size > 4 * 1024 * 1024) { alert('Image too large. Max 4MB.'); return; }
+      const r = new FileReader();
+      r.onload = async e => { await setProductImg(id, e.target.result); await renderProductAdmin(); };
+      r.readAsDataURL(file);
     });
   });
-
-  // Clear image
-  document.querySelectorAll('[data-clear]').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      if(confirm('Remove image for this product?')){clearProductImg(parseInt(this.dataset.clear));renderProductAdmin();}
+  document.querySelectorAll('[data-clear]').forEach(btn => {
+    btn.addEventListener('click', async function () {
+      if (!confirm('Remove image?')) return;
+      await clearProductImg(parseInt(this.dataset.clear));
+      await renderProductAdmin();
     });
   });
-
-  // Delete product
-  document.querySelectorAll('[data-deleteprod]').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      const id=parseInt(this.dataset.deleteprod);
-      const products=getProducts();
-      const p=products.find(x=>x.id===id);
-      if(!confirm(`Delete "${p?p.name:'this product'}"? This also removes its image.`))return;
-      clearProductImg(id);
-      saveProducts(products.filter(x=>x.id!==id));
-      renderProductAdmin();
+  document.querySelectorAll('[data-deleteprod]').forEach(btn => {
+    btn.addEventListener('click', async function () {
+      const id = parseInt(this.dataset.deleteprod);
+      const products = getProducts();
+      const p = products.find(x => x.id === id);
+      if (!confirm(`Delete "${p ? p.name : 'this product'}"?`)) return;
+      await clearProductImg(id);
+      await saveProducts(products.filter(x => x.id !== id));
+      await renderProductAdmin();
     });
   });
 }
 
-// Add Product Modal
-document.getElementById('addProductBtn').addEventListener('click',()=>{
-  document.getElementById('newProductName').value='';
-  document.getElementById('newProductDesc').value='';
+document.getElementById('addProductBtn').addEventListener('click', () => {
+  document.getElementById('newProductName').value = '';
+  document.getElementById('newProductDesc').value = '';
   document.getElementById('addProductModal').classList.remove('hidden');
-  setTimeout(()=>document.getElementById('newProductName').focus(),50);
+  setTimeout(() => document.getElementById('newProductName').focus(), 50);
 });
-document.getElementById('cancelAddProduct').addEventListener('click',()=>document.getElementById('addProductModal').classList.add('hidden'));
-document.getElementById('addProductModal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
-document.getElementById('confirmAddProduct').addEventListener('click',()=>{
-  const name=document.getElementById('newProductName').value.trim();
-  if(!name){alert('Please enter a product name.');return;}
-  const products=getProducts();
-  const newId=getNextProductId();
-  products.push({id:newId,name,desc:document.getElementById('newProductDesc').value.trim()});
-  saveProducts(products);
+document.getElementById('cancelAddProduct').addEventListener('click', () => document.getElementById('addProductModal').classList.add('hidden'));
+document.getElementById('addProductModal').addEventListener('click', function (e) { if (e.target === this) this.classList.add('hidden'); });
+document.getElementById('confirmAddProduct').addEventListener('click', async () => {
+  const name = document.getElementById('newProductName').value.trim();
+  if (!name) { alert('Enter a product name.'); return; }
+  const products = getProducts();
+  products.push({ id: getNextId(), name, desc: document.getElementById('newProductDesc').value.trim() });
+  await saveProducts(products);
   document.getElementById('addProductModal').classList.add('hidden');
-  renderProductAdmin();
+  await renderProductAdmin();
 });
-document.getElementById('newProductName').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('confirmAddProduct').click();});
 
 // ─── GALLERY ───
-function getGallery(type){try{return JSON.parse(localStorage.getItem('agro_gallery_'+type)||'[]')}catch{return[]}}
-function saveGallery(type,arr){localStorage.setItem('agro_gallery_'+type,JSON.stringify(arr))}
+function getGallery(type) { try { return JSON.parse(allSettings['gallery_' + type] || '[]'); } catch { return []; } }
+async function saveGallery(type, arr) { const str = JSON.stringify(arr); allSettings['gallery_' + type] = str; await sbSet('gallery_' + type, str); }
 
-function renderGalleryGrid(type,gridId){
-  const imgs=getGallery(type);
-  const grid=document.getElementById(gridId);
-  grid.innerHTML=imgs.map((img,i)=>`
+function renderGalleryGrid(type, gridId) {
+  const imgs = getGallery(type);
+  const grid = document.getElementById(gridId);
+  grid.innerHTML = imgs.map((img, i) => `
     <div class="gallery-card">
-      <div class="gallery-card-img"><img src="${img}" alt="${type} land photo ${i+1}"></div>
-      <div class="gallery-card-body">
-        <p>Photo ${i+1}</p>
+      <div class="gallery-card-img"><img src="${img}" alt="Photo ${i + 1}"></div>
+      <div class="gallery-card-body"><p>Photo ${i + 1}</p>
         <button class="btn-sm btn-sm-red" data-galtype="${type}" data-galidx="${i}">Remove</button>
       </div>
     </div>`).join('');
-
-  // Bind remove
-  grid.querySelectorAll('[data-galidx]').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      const t=this.dataset.galtype,idx=parseInt(this.dataset.galidx);
-      if(!confirm('Remove this photo?'))return;
-      const arr=getGallery(t);arr.splice(idx,1);saveGallery(t,arr);
-      renderGalleryGrid(t,gridId);
+  grid.querySelectorAll('[data-galidx]').forEach(btn => {
+    btn.addEventListener('click', async function () {
+      if (!confirm('Remove photo?')) return;
+      const arr = getGallery(this.dataset.galtype);
+      arr.splice(parseInt(this.dataset.galidx), 1);
+      await saveGallery(this.dataset.galtype, arr);
+      renderGalleryGrid(this.dataset.galtype, gridId);
     });
   });
 }
 
-function renderGallery(){
-  renderGalleryGrid('barren','barrenGrid');
-  renderGalleryGrid('agro','aggroGrid');
+function renderGallery() {
+  renderGalleryGrid('barren', 'barrenGrid');
+  renderGalleryGrid('agro', 'aggroGrid');
 }
 
-function bindGalleryUpload(inputId,type,gridId){
-  document.getElementById(inputId).addEventListener('change',function(){
-    const files=Array.from(this.files);
-    if(!files.length)return;
-    const arr=getGallery(type);
-    let pending=files.length;
-    files.forEach(f=>{
-      if(f.size>5*1024*1024){alert(`"${f.name}" is too large (max 5MB).`);pending--;if(!pending)renderGalleryGrid(type,gridId);return;}
-      const r=new FileReader();
-      r.onload=e=>{arr.push(e.target.result);pending--;if(!pending){saveGallery(type,arr);renderGalleryGrid(type,gridId);}};
+function bindGalleryUpload(inputId, type, gridId) {
+  document.getElementById(inputId).addEventListener('change', async function () {
+    const files = Array.from(this.files); if (!files.length) return;
+    const arr = getGallery(type); let pending = files.length;
+    files.forEach(f => {
+      if (f.size > 5 * 1024 * 1024) { alert(`${f.name} too large (max 5MB).`); pending--; return; }
+      const r = new FileReader();
+      r.onload = async e => {
+        arr.push(e.target.result); pending--;
+        if (!pending) { await saveGallery(type, arr); renderGalleryGrid(type, gridId); }
+      };
       r.readAsDataURL(f);
     });
-    this.value='';
+    this.value = '';
   });
 }
 
-// Will be bound after DOM is ready
-function initGalleryBindings(){
-  bindGalleryUpload('barrenUpload','barren','barrenGrid');
-  bindGalleryUpload('aggroUpload','agro','aggroGrid');
-}
+bindGalleryUpload('barrenUpload', 'barren', 'barrenGrid');
+bindGalleryUpload('aggroUpload', 'agro', 'aggroGrid');
 
-// ─── SETTINGS ───
-const CONTACT_FIELDS=[
-  {key:'agro_contact_whatsapp',id:'set-whatsapp',def:'+91 70577 78505',toast:'toast-whatsapp'},
-  {key:'agro_contact_email',id:'set-email',def:'info@agrotechners.com',toast:'toast-email'},
-  {key:'agro_contact_location',id:'set-location',def:'Dhule, Maharashtra, India',toast:'toast-location'},
-  {key:'agro_patent_num',id:'set-patent-num',def:'WO 2025/057241 A1',toast:'toast-set-patent-num'},
-  {key:'agro_patent_filed',id:'set-patent-filed',def:'September 2023',toast:'toast-set-patent-filed'},
-  {key:'agro_patent_pub',id:'set-patent-pub',def:'March 2025',toast:'toast-set-patent-pub'},
-  {key:'agro_patent_inventors',id:'set-inventors',def:'Shashank & Urmila Joshi',toast:'toast-set-inventors'},
+// ─── SETTINGS TAB ───
+const SETTING_FIELDS = [
+  { key: 'contact_whatsapp', id: 'set-whatsapp', def: '+91 70577 78505' },
+  { key: 'contact_email', id: 'set-email', def: 'info@agrotechners.com' },
+  { key: 'contact_location', id: 'set-location', def: 'Dhule, Maharashtra, India' },
+  { key: 'patent_num', id: 'set-patent-num', def: 'WO 2025/057241 A1' },
+  { key: 'patent_filed', id: 'set-patent-filed', def: 'September 2023' },
+  { key: 'patent_pub', id: 'set-patent-pub', def: 'March 2025' },
+  { key: 'patent_inventors', id: 'set-inventors', def: 'Shashank & Urmila Joshi' },
 ];
 
-function loadContactSettings(){
-  CONTACT_FIELDS.forEach(f=>{
-    const el=document.getElementById(f.id);
-    if(el)el.value=localStorage.getItem(f.key)||f.def;
+function loadSettingsTab() {
+  SETTING_FIELDS.forEach(f => {
+    const el = document.getElementById(f.id);
+    if (el) el.value = allSettings[f.key] || f.def;
   });
+  document.getElementById('settingCount').textContent = allEnquiries.length + ' entries';
 }
 
-document.querySelectorAll('.btn-save-setting').forEach(btn=>{
-  if(btn.dataset.key){
-    btn.addEventListener('click',function(){
-      const field=document.getElementById(this.dataset.field);
-      if(!field)return;
-      localStorage.setItem(this.dataset.key,field.value);
-      const toastId='toast-'+this.dataset.field;
-      const toast=document.getElementById(toastId);
-      if(toast){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500);}
-    });
-  }
+document.querySelectorAll('.btn-save-setting[data-key]').forEach(btn => {
+  btn.addEventListener('click', async function () {
+    const val = document.getElementById(this.dataset.field).value;
+    await sbSet(this.dataset.key, val);
+    allSettings[this.dataset.key] = val;
+    const toast = document.getElementById('toast-' + this.dataset.field);
+    if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); }
+  });
 });
 
-document.getElementById('changePwdBtn').addEventListener('click',()=>{
-  const val=document.getElementById('set-new-pwd').value;
-  if(val.length<4){alert('Password must be at least 4 characters.');return;}
-  localStorage.setItem(PWD_KEY,val);
-  document.getElementById('set-new-pwd').value='';
-  const t=document.getElementById('toast-pwd');
-  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);
-});
-
-function updateSettings(){
-  const data=getEnquiries();
-  document.getElementById('settingCount').textContent=data.length+' entries';
-  const products=getProducts();
-  const imgCount=products.filter(p=>getProductImg(p.id)).length;
-  document.getElementById('settingImgCount').textContent=imgCount+' / '+products.length+' products';
-  try{
-    let total=0;
-    for(let k in localStorage){if(k.startsWith('agro')||k.startsWith('prod'))total+=localStorage[k].length*2;}
-    document.getElementById('settingStorage').textContent=total>1048576?Math.round(total/1048576*10)/10+'MB':total>1024?Math.round(total/1024)+'KB':total+'B';
-  }catch{document.getElementById('settingStorage').textContent='N/A';}
-  loadContactSettings();
-  loadLogo();
-}
-
-// ─── INIT ───
-window.addEventListener('DOMContentLoaded',()=>{
-  initGalleryBindings();
+document.getElementById('changePwdBtn').addEventListener('click', () => {
+  const val = document.getElementById('set-new-pwd').value;
+  if (val.length < 4) { alert('Password must be at least 4 characters.'); return; }
+  localStorage.setItem(PWD_KEY, val);
+  document.getElementById('set-new-pwd').value = '';
+  const t = document.getElementById('toast-pwd');
+  t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500);
 });
 </script>
 </body>

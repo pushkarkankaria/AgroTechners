@@ -2499,10 +2499,14 @@
       if (setError('role', 'roleErr', !role)) err = true;
       if (setError('message', 'msgErr', !msg)) err = true;
       if (err) return;
-      // save to localStorage
-      const entries = JSON.parse(localStorage.getItem('agro_enquiries') || '[]');
-      entries.push({ id: Date.now(), name, email, phone, role, district, message: msg, timestamp: new Date().toISOString() });
-      localStorage.setItem('agro_enquiries', JSON.stringify(entries));
+      // save to Supabase
+      const SUPA_URL = "https://rzjefepxcydbrhmkghlk.supabase.co";
+      const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6amVmZXB4Y3lkYnJobWtnaGxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MDk3MzAsImV4cCI6MjA5ODE4NTczMH0.U0YHfyAxhtfNOqbbGF7aAkmWC091NlaQSoei5BrWC40";
+      fetch(`${SUPA_URL}/rest/v1/agro_enquiries`, {
+        method: 'POST',
+        headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, role, district, message: msg })
+      }).catch(() => {});
       form.style.display = 'none'; success.classList.add('show');
       // WhatsApp auto-notify
       const waMsg = encodeURIComponent(`New Enquiry from ${name} (${role}) — ${email} ${phone ? '| ' + phone : ''} | ${district || '—'}`);
@@ -2522,104 +2526,80 @@
       el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = 'opacity .5s ease,transform .5s ease'; obs.observe(el);
     });
 
-    // ─── ADMIN SYNC: read from localStorage and apply to page ───
-    (function applyAdminSettings() {
-      // Helper to get stored value with fallback
-      function ls(key, fallback) { try { return localStorage.getItem(key) || fallback; } catch(e) { return fallback; } }
+    // ─── ADMIN SYNC: read from Supabase and apply to page ───
+    (async function applyAdminSettings() {
+      const SUPA_URL = "https://rzjefepxcydbrhmkghlk.supabase.co";
+      const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6amVmZXB4Y3lkYnJobWtnaGxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MDk3MzAsImV4cCI6MjA5ODE4NTczMH0.U0YHfyAxhtfNOqbbGF7aAkmWC091NlaQSoei5BrWC40";
+      let S = {};
+      try {
+        const r = await fetch(`${SUPA_URL}/rest/v1/agro_settings?select=key,value`, {
+          headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` }
+        });
+        const rows = await r.json();
+        rows.forEach(row => S[row.key] = row.value);
+      } catch(e) { return; }
 
-      // 1. LOGO — replace all logo SVGs with uploaded image
-      const logoData = ls('agro_logo', '');
+      function g(key, def) { return S[key] || def; }
+
+      // 1. LOGO
+      const logoData = g('logo', '');
       if (logoData) {
-        // Navbar logo icon
         const navLogoIcon = document.querySelector('.nav-logo-icon');
         if (navLogoIcon) {
           const img = document.createElement('img');
-          img.src = logoData;
-          img.style.cssText = 'width:44px;height:44px;object-fit:contain;border-radius:50%';
+          img.src = logoData; img.style.cssText = 'width:44px;height:44px;object-fit:contain;border-radius:50%';
           navLogoIcon.replaceWith(img);
         }
-        // Footer logo SVG (first svg in footer-logo-row)
         const footerLogoSvg = document.querySelector('.footer-logo-row svg');
         if (footerLogoSvg) {
           const img2 = document.createElement('img');
-          img2.src = logoData;
-          img2.style.cssText = 'width:40px;height:40px;object-fit:contain;border-radius:50%';
+          img2.src = logoData; img2.style.cssText = 'width:40px;height:40px;object-fit:contain;border-radius:50%';
           footerLogoSvg.replaceWith(img2);
         }
-        // WA FAB area logo not needed
       }
 
-      // 2. CONTACT DETAILS — chips below the contact form
-      const waNum   = ls('agro_contact_whatsapp', '+91 70577 78505');
-      const email   = ls('agro_contact_email',    'info@agrotechners.com');
-      const loc     = ls('agro_contact_location', 'Dhule, Maharashtra, India');
-
-      // Location chip (first .contact-chip)
+      // 2. CONTACT
+      const waNum = g('contact_whatsapp', '+91 70577 78505');
+      const email = g('contact_email', 'info@agrotechners.com');
+      const loc   = g('contact_location', 'Dhule, Maharashtra, India');
       const chips = document.querySelectorAll('.contact-chip');
       if (chips[0]) chips[0].childNodes[chips[0].childNodes.length - 1].textContent = loc;
-      // Email chip
       if (chips[1]) chips[1].childNodes[chips[1].childNodes.length - 1].textContent = email;
-      // WhatsApp chip
       if (chips[2]) {
         const rawNum = waNum.replace(/\D/g, '');
         chips[2].href = 'https://wa.me/' + rawNum + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20Decarboscrubber%20technology.';
         chips[2].childNodes[chips[2].childNodes.length - 1].textContent = waNum + ' · WhatsApp';
       }
-      // WA FAB link
       const waFab = document.querySelector('.wa-fab');
-      if (waFab) {
-        const rawFab = waNum.replace(/\D/g, '');
-        waFab.href = 'https://wa.me/' + rawFab + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20Decarboscrubber%20technology.';
-      }
-      // WhatsApp link in form submit
-      // Override form submit to use stored number
-      const origForm = document.getElementById('contactForm');
-      if (origForm) {
-        origForm.addEventListener('submit', function() {
-          // The existing submit handler fires first (it's defined earlier).
-          // We patch the WA link dynamically using the stored number.
-          setTimeout(function() {
-            const rawWa = ls('agro_contact_whatsapp', '917057778505').replace(/\D/g, '');
-            document.querySelector('a[href*="wa.me"]') && null; // just use the one built in submit
-          }, 0);
-        }, true);
-      }
+      if (waFab) waFab.href = 'https://wa.me/' + waNum.replace(/\D/g,'') + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20Decarboscrubber%20technology.';
 
-      // 3. PATENT DETAILS — patent certificate card
-      const patNum     = ls('agro_patent_num',       'WO 2025/057241 A1');
-      const patFiled   = ls('agro_patent_filed',      'September 2023');
-      const patPub     = ls('agro_patent_pub',        'March 2025');
-      const patInv     = ls('agro_patent_inventors',  'Shashank & Urmila Joshi');
-
+      // 3. PATENT
+      const patNum   = g('patent_num',       'WO 2025/057241 A1');
+      const patFiled = g('patent_filed',      'September 2023');
+      const patPub   = g('patent_pub',        'March 2025');
+      const patInv   = g('patent_inventors',  'Shashank & Urmila Joshi');
       const patNumEl = document.querySelector('.patent-num');
       if (patNumEl) patNumEl.textContent = patNum;
-
       const patMeta = document.querySelectorAll('.patent-meta li');
       if (patMeta[0]) patMeta[0].querySelector('span:last-child').textContent = patFiled;
       if (patMeta[1]) patMeta[1].querySelector('span:last-child').textContent = patPub;
       if (patMeta[2]) patMeta[2].querySelector('span:last-child').textContent = patInv;
 
-      // 4. PROOF SECTION — barren & agro gallery images
-      const barren = JSON.parse(ls('agro_gallery_barren', '[]'));
-      const agro   = JSON.parse(ls('agro_gallery_agro',   '[]'));
-
+      // 4. GALLERY
+      const barren = JSON.parse(g('gallery_barren', '[]'));
+      const agro   = JSON.parse(g('gallery_agro',   '[]'));
       const proofBefore = document.querySelector('.proof-img-before');
       const proofAfter  = document.querySelector('.proof-img-after');
+      if (barren.length && proofBefore)
+        proofBefore.innerHTML = '<img src="' + barren[0] + '" alt="Barren land" style="width:100%;height:100%;object-fit:cover;border-radius:12px">';
+      if (agro.length && proofAfter)
+        proofAfter.innerHTML = '<img src="' + agro[0] + '" alt="AgroTechners land" style="width:100%;height:100%;object-fit:cover;border-radius:12px">';
 
-      if (barren.length && proofBefore) {
-        proofBefore.innerHTML = '<img src="' + barren[0] + '" alt="Barren land before treatment" style="width:100%;height:100%;object-fit:cover;border-radius:12px">';
-      }
-      if (agro.length && proofAfter) {
-        proofAfter.innerHTML = '<img src="' + agro[0] + '" alt="AgroTechners treated land" style="width:100%;height:100%;object-fit:cover;border-radius:12px">';
-      }
-
-      // 5. FOOTER location text
+      // 5. FOOTER location
       const footerLocEl = document.querySelector('.footer-logo-row div div:last-child');
-      if (footerLocEl) {
-        footerLocEl.innerHTML = loc + ' · EST. 2023';
-      }
+      if (footerLocEl) footerLocEl.innerHTML = loc + ' · EST. 2023';
     })();
-  </script>
+    </script>
 </body>
 
 </html>

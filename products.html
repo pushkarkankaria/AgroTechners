@@ -1205,77 +1205,54 @@
       },
     ];
 
-    // ─── ADMIN SYNC: merge stored products + apply logo/contact ───
-    (function applyAdminSettings() {
-      function ls(key, fallback) { try { return localStorage.getItem(key) || fallback; } catch(e) { return fallback; } }
+    // ─── ADMIN SYNC: load from Supabase ───
+    const SUPA_URL = "https://rzjefepxcydbrhmkghlk.supabase.co";
+    const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6amVmZXB4Y3lkYnJobWtnaGxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MDk3MzAsImV4cCI6MjA5ODE4NTczMH0.U0YHfyAxhtfNOqbbGF7aAkmWC091NlaQSoei5BrWC40";
+    let _S = {};
+    try {
+      const _r = await fetch(`${SUPA_URL}/rest/v1/agro_settings?select=key,value`, {
+        headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` }
+      });
+      const _rows = await _r.json();
+      _rows.forEach(row => _S[row.key] = row.value);
+    } catch(e) {}
 
-      // LOGO in navbar
-      const logoData = ls('agro_logo', '');
-      if (logoData) {
-        const navLogo = document.querySelector('.nav-logo svg');
-        if (navLogo) {
-          const img = document.createElement('img');
-          img.src = logoData;
-          img.style.cssText = 'width:32px;height:32px;object-fit:contain;border-radius:50%';
-          navLogo.replaceWith(img);
-        }
-        const footerSvg = document.querySelector('#footer svg');
-        if (footerSvg) {
-          const img2 = document.createElement('img');
-          img2.src = logoData;
-          img2.style.cssText = 'width:28px;height:28px;object-fit:contain;border-radius:50%';
-          footerSvg.replaceWith(img2);
-        }
-      }
+    function _g(key, def) { return _S[key] || def; }
 
-      // WA FAB — update number
-      const waNum = ls('agro_contact_whatsapp', '+91 70577 78505');
-      const rawNum = waNum.replace(/\D/g, '');
-      const waFab = document.querySelector('.wa-fab');
-      if (waFab) waFab.href = 'https://wa.me/' + rawNum + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20products.';
+    // LOGO
+    const logoData = _g('logo', '');
+    if (logoData) {
+      const navLogo = document.querySelector('.nav-logo svg');
+      if (navLogo) { const img = document.createElement('img'); img.src = logoData; img.style.cssText = 'width:32px;height:32px;object-fit:contain;border-radius:50%'; navLogo.replaceWith(img); }
+    }
 
-      // CTA band WhatsApp button
-      const ctaWa = document.querySelector('#cta-band .btn-whi');
-      if (ctaWa) ctaWa.href = 'https://wa.me/' + rawNum + '?text=Hi%20AgroTechners%2C%20I%20want%20to%20enquire%20about%20your%20products.';
+    // WA number
+    const waNum = _g('contact_whatsapp', '+91 70577 78505');
+    const rawNum = waNum.replace(/\D/g, '');
+    const waFab = document.querySelector('.wa-fab');
+    if (waFab) waFab.href = 'https://wa.me/' + rawNum + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20products.';
 
-      // Merge admin-added products into PRODUCTS array
-      const storedProducts = JSON.parse(ls('agro_products', 'null'));
-      if (storedProducts) {
-        // Sync names from admin into PRODUCTS
+    // Merge admin products
+    const storedProductsStr = _g('products', null);
+    if (storedProductsStr) {
+      try {
+        const storedProducts = JSON.parse(storedProductsStr);
         storedProducts.forEach(sp => {
           const existing = PRODUCTS.find(p => p.id === sp.id);
-          if (existing) {
-            existing.name = sp.name; // allow renaming
-          } else {
-            // New product added via admin
-            PRODUCTS.push({
-              id: sp.id, cat: 'combo',
-              name: sp.name,
-              tagline: sp.desc || 'Custom product.',
-              desc: sp.desc || 'Contact us for details about this product.',
-              img: '',
-              yield: 'Contact for details',
-              tags: ['New'],
-              specs: ['Contact us for full specifications'],
-              carbon: false
-            });
-          }
+          if (existing) { existing.name = sp.name; }
+          else { PRODUCTS.push({ id: sp.id, cat: 'combo', name: sp.name, tagline: sp.desc || 'Custom product.', desc: sp.desc || 'Contact us for details.', img: '', yield: 'Contact for details', tags: ['New'], specs: ['Contact us for full specifications'], carbon: false }); }
         });
-        // Remove products deleted in admin (keep if in storedProducts)
         const storedIds = storedProducts.map(p => p.id);
-        for (let i = PRODUCTS.length - 1; i >= 0; i--) {
-          if (!storedIds.includes(PRODUCTS[i].id)) PRODUCTS.splice(i, 1);
-        }
-      }
-    })();
+        for (let i = PRODUCTS.length - 1; i >= 0; i--) { if (!storedIds.includes(PRODUCTS[i].id)) PRODUCTS.splice(i, 1); }
+      } catch(e) {}
+    }
+
+    // Product images from Supabase
+    function getImgFromStorage(id) { return _S['prod_img_' + id] || ''; }
 
     // ─── RENDER PRODUCTS ───
     const grid = document.getElementById('productsGrid');
     const filterCount = document.getElementById('filterCount');
-
-    function getImgFromStorage(id) {
-      try { return localStorage.getItem('prod_img_' + id) || '' } catch (e) { return '' }
-    }
 
     function renderProducts(cat = 'all') {
       const filtered = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === cat);
@@ -1334,7 +1311,7 @@
       const sl = document.getElementById('modalSpecs');
       sl.innerHTML = p.specs.map(s => `<li>${s}</li>`).join('');
       const waMsg = encodeURIComponent(`Hi AgroTechners, I am interested in: ${p.name}. Please share pricing and availability.`);
-      const storedWa = (localStorage.getItem('agro_contact_whatsapp') || '917057778505').replace(/\D/g, '');
+      const storedWa = rawNum || '917057778505';
       document.getElementById('modalActions').innerHTML = `
     <a href="index.html#contact" class="btn-primary">Send Enquiry</a>
     <a href="https://wa.me/${storedWa}?text=${waMsg}" target="_blank" rel="noopener" class="btn-wa">

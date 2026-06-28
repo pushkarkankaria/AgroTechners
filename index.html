@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroTechners Biotech Pvt. Ltd. — Reviving Dead Land with Bamboo Science</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --forest: #1a3d0a;
+      --forest-deep: #0f2506;
+      --green: #4CAF50;
+      --green-light: #6fcf72;
+      --green-pale: #e8f5e9;
+      --brown: #6b3a1f;
+      --gold: #c8a84b;
+      --gold-light: #e2c97a;
+      --cream: #f9f5ec;
+      --offwhite: #fafaf7;
+      --carbon: #1a1a1a;
+      --carbon-mid: #2d2d2d;
+      --text-dark: #1a1a0e;
+      --text-muted: #5a5a4a;
+      --shadow: 0 4px 24px rgba(26, 61, 10, .1);
+      --shadow-h: 0 12px 40px rgba(26, 61, 10, .18);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      background: var(--offwhite);
+      overflow-x: hidden
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', Georgia, serif
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--forest-deep);
+      padding: 0 6vw;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(200, 168, 75, .15);
+      transition: box-shadow .3s
+    }
+
+    #navbar.scrolled {
+      box-shadow: 0 2px 24px rgba(0, 0, 0, .35)
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none
+    }
+
+    .nav-logo-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
+
+    .nav-logo-text span:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .02em
+    }
+
+    .nav-logo-text span:last-child {
+      font-size: .6rem;
+      color: var(--gold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 500
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, .82);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      transition: color .2s;
+      text-transform: uppercase
+    }
+
+    .nav-links a:hover {
+      color: var(--gold)
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: #fff !important;
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: background .2s, transform .2s !important
+    }
+
+    .nav-cta:hover {
+      background: var(--green-light) !important;
+      transform: translateY(-1px)
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all .3s
+    }
+
+    /* ── CARBON PARTICLE CANVAS ── */
+    #carbonCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .45
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--forest-deep);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 68px
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 90% at 65% 50%, rgba(76, 175, 80, .07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 15% 80%, rgba(200, 168, 75, .05) 0%, transparent 60%);
+      pointer-events: none
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(76, 175, 80, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76, 175, 80, .025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none
+    }
+
+    /* carbon molecule pattern subtle */
+    .hero-molecules {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 6vw;
+      width: 100%
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(76, 175, 80, .15);
+      border: 1px solid rgba(76, 175, 80, .35);
+      color: var(--green-light);
+      padding: 7px 16px;
+      border-radius: 100px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      margin-bottom: 1.8rem;
+      text-transform: uppercase
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .5;
+        transform: scale(1.3)
+      }
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      letter-spacing: -.02em
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--green-light)
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, .72);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+      font-weight: 300
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 5px;
+      border: none;
+      font-size: .92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      letter-spacing: .02em
+    }
+
+    .btn-primary:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(76, 175, 80, .35)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 5px;
+      border: 1.5px solid rgba(255, 255, 255, .5);
+      font-size: .92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color .2s, background .2s, transform .2s;
+      letter-spacing: .02em
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, .08);
+      transform: translateY(-2px)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap
+    }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      backdrop-filter: blur(4px);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .85);
+      font-weight: 500;
+      white-space: nowrap
+    }
+
+    .hero-stat strong {
+      color: var(--gold)
+    }
+
+    /* carbon credit badge strip */
+    .carbon-strip {
+      margin-top: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(26, 26, 26, .8), rgba(45, 45, 45, .7));
+      border: 1px solid rgba(200, 168, 75, .3);
+      border-radius: 8px;
+      padding: 10px 16px;
+      backdrop-filter: blur(8px)
+    }
+
+    .carbon-strip svg {
+      flex-shrink: 0
+    }
+
+    .carbon-strip-text {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .75);
+      line-height: 1.4
+    }
+
+    .carbon-strip-text strong {
+      color: var(--gold-light)
+    }
+
+    /* ── GROWING PLANT LOGO (hero visual) ── */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative
+    }
+
+    #plantCanvas {
+      width: 100%;
+      max-width: 460px;
+      height: 500px;
+      border-radius: 20px;
+      background: radial-gradient(ellipse at 50% 80%, rgba(26, 61, 10, .6) 0%, transparent 70%)
+    }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      padding: 90px 6vw
+    }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      color: var(--green)
+    }
+
+    .section-heading {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.18;
+      margin-bottom: 1rem
+    }
+
+    .section-sub {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.65;
+      font-weight: 300
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    /* ── CARBON CREDIT BAND ── */
+    #carbonband {
+      background: linear-gradient(135deg, var(--carbon) 0%, var(--carbon-mid) 100%);
+      padding: 28px 6vw;
+      position: relative;
+      overflow: hidden
+    }
+
+    #carbonband::before {
+      content: 'C';
+      position: absolute;
+      right: -20px;
+      top: -30px;
+      font-size: 200px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, .03);
+      font-family: 'Playfair Display', serif;
+      pointer-events: none
+    }
+
+    .cb-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap
+    }
+
+    .cb-left {
+      display: flex;
+      align-items: center;
+      gap: 16px
+    }
+
+    .cb-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(200, 168, 75, .15);
+      border: 1px solid rgba(200, 168, 75, .35);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .cb-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 2px
+    }
+
+    .cb-sub {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .55)
+    }
+
+    .cb-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap
+    }
+
+    .cb-stat {
+      text-align: center
+    }
+
+    .cb-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-light)
+    }
+
+    .cb-stat .lbl {
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .5);
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .cb-cta {
+      background: var(--gold);
+      color: var(--carbon);
+      padding: 10px 22px;
+      border-radius: 5px;
+      font-size: .85rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .2s, transform .2s
+    }
+
+    .cb-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px)
+    }
+
+    /* ── OUTPUTS ── */
+    #outputs {
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%)
+    }
+
+    .outputs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem
+    }
+
+    .output-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.2rem 1.8rem;
+      box-shadow: var(--shadow);
+      transition: box-shadow .3s, transform .3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .output-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--green);
+      transform: scaleX(0);
+      transition: transform .3s;
+      transform-origin: left
+    }
+
+    .output-card:hover {
+      box-shadow: var(--shadow-h);
+      transform: translateY(-6px)
+    }
+
+    .output-card:hover::before {
+      transform: scaleX(1)
+    }
+
+    .output-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--green-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem
+    }
+
+    .yield-badge {
+      display: inline-block;
+      background: var(--forest);
+      color: var(--gold-light);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: .8rem;
+      text-transform: uppercase
+    }
+
+    .output-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: .7rem;
+      color: var(--forest)
+    }
+
+    .output-card p {
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.65
+    }
+
+    .output-card a.view-products {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1rem;
+      color: var(--green);
+      font-size: .85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap .2s
+    }
+
+    .output-card a.view-products:hover {
+      gap: 8px
+    }
+
+    /* ── TECHNOLOGY ── */
+    #technology {
+      background: var(--offwhite)
+    }
+
+    .tech-inner {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 5rem;
+      align-items: start
+    }
+
+    .steps-flow {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column
+    }
+
+    .step-item {
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+      padding: 1.5rem 0 1.5rem 1.8rem;
+      border-left: 2px solid var(--green-pale);
+      position: relative
+    }
+
+    .step-item::before {
+      content: attr(data-num);
+      position: absolute;
+      left: -17px;
+      top: 1.5rem;
+      width: 34px;
+      height: 34px;
+      background: var(--forest);
+      color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: .95rem;
+      border: 3px solid var(--offwhite)
+    }
+
+    .step-item:last-child {
+      border-left-color: transparent
+    }
+
+    .step-content h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: .4rem
+    }
+
+    .step-content p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.6
+    }
+
+    .tech-callout {
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, var(--brown) 0%, #8b4a2a 100%);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      border-left: 5px solid var(--gold)
+    }
+
+    .tech-callout p {
+      color: rgba(255, 255, 255, .9);
+      font-size: .98rem;
+      line-height: 1.7;
+      font-style: italic
+    }
+
+    .tech-callout strong {
+      color: var(--gold-light)
+    }
+
+    .apparatus-diagram {
+      background: var(--forest-deep);
+      border-radius: 16px;
+      padding: 2rem;
+      color: #fff;
+      position: sticky;
+      top: 100px
+    }
+
+    .apparatus-diagram h4 {
+      color: var(--gold);
+      font-size: .85rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600
+    }
+
+    /* ── PROOF ── */
+    #proof {
+      background: linear-gradient(135deg, var(--brown) 0%, #5a2e12 100%);
+      color: #fff
+    }
+
+    #proof .section-label {
+      color: var(--gold-light)
+    }
+
+    #proof .section-sub {
+      color: rgba(255, 255, 255, .75)
+    }
+
+    .proof-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: center
+    }
+
+    .proof-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem
+    }
+
+    .proof-img {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3
+    }
+
+    .proof-img-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase
+    }
+
+    .proof-img-before .proof-img-inner {
+      background: linear-gradient(135deg, #8B7355, #6B5C45);
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .proof-img-after .proof-img-inner {
+      background: linear-gradient(135deg, #2d5a1b, #4a8a35);
+      color: rgba(255, 255, 255, .9)
+    }
+
+    .proof-img-label {
+      margin-top: .6rem;
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .65);
+      text-align: center
+    }
+
+    .proof-points {
+      list-style: none
+    }
+
+    .proof-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: .75rem 0;
+      font-size: .98rem;
+      color: rgba(255, 255, 255, .9);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      line-height: 1.5
+    }
+
+    .proof-check {
+      width: 22px;
+      height: 22px;
+      background: rgba(76, 175, 80, .25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    /* ── SERVE ── */
+    #serve {
+      background: var(--forest-deep);
+      color: #fff
+    }
+
+    #serve .section-label {
+      color: var(--gold)
+    }
+
+    #serve .section-sub {
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .serve-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 3rem
+    }
+
+    .serve-card {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: background .3s, transform .3s, border-color .3s
+    }
+
+    .serve-card:hover {
+      background: rgba(76, 175, 80, .12);
+      border-color: rgba(76, 175, 80, .35);
+      transform: translateY(-5px)
+    }
+
+    .serve-tag {
+      display: inline-block;
+      background: rgba(200, 168, 75, .2);
+      color: var(--gold-light);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      text-transform: uppercase
+    }
+
+    .serve-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: .8rem;
+      color: #fff;
+      line-height: 1.3
+    }
+
+    .serve-card p {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.65;
+      margin-bottom: 1.2rem
+    }
+
+    .serve-link {
+      color: var(--green-light);
+      font-size: .88rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap .2s
+    }
+
+    .serve-link:hover {
+      gap: 8px
+    }
+
+    /* ── PATENT ── */
+    #patent {
+      background: var(--cream)
+    }
+
+    #patent .section-label {
+      color: var(--brown)
+    }
+
+    .patent-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start
+    }
+
+    .patent-certificate {
+      background: var(--forest-deep);
+      border-radius: 16px;
+      padding: 2.5rem;
+      border: 1px solid var(--gold);
+      position: relative;
+      overflow: hidden
+    }
+
+    .patent-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(200, 168, 75, .25)
+    }
+
+    .patent-wipo {
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .2em;
+      font-weight: 700;
+      text-transform: uppercase
+    }
+
+    .patent-num {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: .02em;
+      margin-bottom: .3rem
+    }
+
+    .patent-title-cert {
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .6);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 1.5rem
+    }
+
+    .patent-meta {
+      list-style: none
+    }
+
+    .patent-meta li {
+      display: flex;
+      justify-content: space-between;
+      padding: .5rem 0;
+      font-size: .85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06)
+    }
+
+    .patent-meta li span:first-child {
+      color: rgba(255, 255, 255, .5)
+    }
+
+    .patent-meta li span:last-child {
+      color: #fff;
+      font-weight: 500;
+      text-align: right
+    }
+
+    .patent-text h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--forest)
+    }
+
+    .patent-text p {
+      font-size: .97rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      margin-bottom: 1.5rem
+    }
+
+    .patent-countries {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.5rem
+    }
+
+    .country-tag {
+      background: var(--forest);
+      color: rgba(255, 255, 255, .85);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      letter-spacing: .05em
+    }
+
+    .country-tag.more {
+      background: var(--gold);
+      color: var(--forest-deep)
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--offwhite)
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 4rem
+    }
+
+    .about-story p {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1.2rem
+    }
+
+    .founder-card {
+      background: var(--forest-deep);
+      border-radius: 16px;
+      overflow: hidden;
+      text-align: center
+    }
+
+    .founder-photo {
+      height: 180px;
+      background: linear-gradient(135deg, #2d5a1b, var(--forest));
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .founder-info {
+      padding: 1.5rem
+    }
+
+    .founder-info h4 {
+      color: #fff;
+      font-size: 1.15rem;
+      margin-bottom: .3rem
+    }
+
+    .founder-info p {
+      color: var(--gold);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem
+    }
+
+    .value-tile {
+      background: var(--green-pale);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border-top: 3px solid var(--green);
+      transition: transform .3s, box-shadow .3s
+    }
+
+    .value-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-h)
+    }
+
+    .value-tile h5 {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .value-tile p {
+      font-size: .88rem;
+      color: var(--text-dark);
+      line-height: 1.5
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9)
+    }
+
+    .contact-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center
+    }
+
+    #contact .section-heading {
+      color: var(--forest)
+    }
+
+    #contact .section-sub {
+      margin: 0 auto 2.5rem;
+      color: var(--text-muted)
+    }
+
+    .contact-form {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 40px rgba(26, 61, 10, .12);
+      text-align: left
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1.2rem
+    }
+
+    .form-group label {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--forest);
+      letter-spacing: .03em
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 1.5px solid #e0e0d0;
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: .92rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      background: #fafafa;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      -webkit-appearance: none
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, .12);
+      background: #fff
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px
+    }
+
+    .form-group input.error,
+    .form-group select.error,
+    .form-group textarea.error {
+      border-color: #e53935
+    }
+
+    .form-error {
+      font-size: .78rem;
+      color: #e53935;
+      margin-top: 2px;
+      display: none
+    }
+
+    .form-error.show {
+      display: block
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--forest);
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: .98rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: background .2s, transform .2s;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .btn-submit:hover {
+      background: #2d5a1b;
+      transform: translateY(-2px)
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--forest)
+    }
+
+    .form-success.show {
+      display: block
+    }
+
+    .form-success h4 {
+      font-size: 1.3rem;
+      margin-bottom: .5rem
+    }
+
+    .form-success p {
+      color: var(--text-muted);
+      font-size: .95rem
+    }
+
+    /* WhatsApp contact */
+    .contact-chips {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--forest);
+      color: rgba(255, 255, 255, .85);
+      padding: 9px 18px;
+      border-radius: 100px;
+      font-size: .83rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background .2s
+    }
+
+    .contact-chip:hover {
+      background: #2d5a1b
+    }
+
+    .contact-chip.whatsapp {
+      background: #25D366;
+      color: #fff
+    }
+
+    .contact-chip.whatsapp:hover {
+      background: #1da851
+    }
+
+    /* WhatsApp FAB */
+    .wa-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, .5);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      animation: waPulse 3s ease-in-out infinite
+    }
+
+    .wa-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(37, 211, 102, .6)
+    }
+
+    @keyframes waPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, .5)
+      }
+
+      50% {
+        box-shadow: 0 4px 30px rgba(37, 211, 102, .8), 0 0 0 8px rgba(37, 211, 102, .1)
+      }
+    }
+
+    .wa-tooltip {
+      position: absolute;
+      right: 70px;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: .78rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s
+    }
+
+    .wa-fab:hover .wa-tooltip {
+      opacity: 1
+    }
+
+    /* ── FOOTER ── */
+    #footer {
+      background: var(--forest-deep);
+      color: rgba(255, 255, 255, .75);
+      padding: 60px 6vw 0
+    }
+
+    .footer-logo-row {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .08)
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 3rem
+    }
+
+    .footer-col h5 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem
+    }
+
+    .footer-col ul {
+      list-style: none
+    }
+
+    .footer-col ul li {
+      margin-bottom: .6rem
+    }
+
+    .footer-col ul li a {
+      color: rgba(255, 255, 255, .6);
+      text-decoration: none;
+      font-size: .88rem;
+      transition: color .2s
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--green-light)
+    }
+
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, .08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .social-btn:hover {
+      background: var(--green)
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .4);
+      letter-spacing: .03em
+    }
+
+    /* Admin link subtle */
+    .admin-link {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 999;
+      background: rgba(26, 61, 10, .9);
+      color: rgba(255, 255, 255, .5);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: .72rem;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(76, 175, 80, .2);
+      transition: color .2s
+    }
+
+    .admin-link:hover {
+      color: #fff
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .nav-links {
+        display: none
+      }
+
+      .nav-hamburger {
+        display: flex
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--forest-deep);
+        padding: 1.5rem 6vw;
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, .1)
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 3rem 6vw 4rem
+      }
+
+      #plantCanvas {
+        height: 300px;
+        max-width: 100%
+      }
+
+      .outputs-grid,
+      .serve-grid,
+      .values-grid {
+        grid-template-columns: 1fr
+      }
+
+      .tech-inner,
+      .proof-inner,
+      .patent-inner,
+      .about-inner {
+        grid-template-columns: 1fr
+      }
+
+      .apparatus-diagram {
+        position: relative;
+        top: 0
+      }
+
+      .form-row,
+      .footer-cols {
+        grid-template-columns: 1fr 1fr
+      }
+
+      section {
+        padding: 60px 6vw
+      }
+
+      .cb-inner {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    @media(max-width:540px) {
+
+      .hero-stats,
+      .carbon-strip {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .form-row,
+      .footer-cols,
+      .proof-images {
+        grid-template-columns: 1fr
+      }
+
+      .contact-chips {
+        flex-direction: column;
+        align-items: center
+      }
+
+      .cb-stats {
+        gap: 1rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CARBON PARTICLE CANVAS -->
+  <canvas id="carbonCanvas"></canvas>
+
+  <!-- WHATSAPP FAB -->
+  <a href="https://wa.me/917057778505?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20Decarboscrubber%20technology."
+    class="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+      <path
+        d="M15 2C7.82 2 2 7.82 2 15C2 17.5 2.7 19.84 3.9 21.83L2.1 28L8.43 26.24C10.36 27.34 12.61 28 15 28C22.18 28 28 22.18 28 15C28 7.82 22.18 2 15 2Z"
+        fill="#fff" opacity=".95" />
+      <path
+        d="M10.5 9.5C10.2 9.5 9.7 9.6 9.2 10.1C8.7 10.6 7.5 11.7 7.5 14C7.5 16.2 9.2 18.4 9.4 18.7C9.7 19 12.4 23 16.4 24.5C19.7 25.7 20.4 25.4 21.1 25.3C21.8 25.2 23.3 24.2 23.6 23.1C23.9 22 23.9 21 23.8 20.8C23.7 20.6 23.4 20.5 23 20.3C22.6 20.1 20.4 19 20 18.9C19.6 18.7 19.3 18.6 19 19C18.7 19.4 17.9 20.3 17.6 20.6C17.3 20.9 17 20.9 16.6 20.7C16.2 20.5 14.9 20.1 13.3 18.6C12.1 17.5 11.3 16.1 11 15.7C10.7 15.3 11 15 11.2 14.8C11.4 14.5 11.7 14.2 11.9 13.9C12.1 13.6 12.2 13.4 12.4 13.1C12.6 12.8 12.4 12.5 12.3 12.3C12.2 12.1 11.4 9.9 11 9C10.8 8.6 10.6 8.6 10.5 9.5Z"
+        fill="#25D366" />
+    </svg>
+    <span class="wa-tooltip">Chat on WhatsApp</span>
+  </a>
+
+  <!-- ADMIN LINK -->
+  <a href="admin.html" class="admin-link">⚙ Admin</a>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <!-- Dynamic animated logo SVG -->
+      <svg class="nav-logo-icon" id="navLogoSvg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="20" fill="#0f2506" stroke="#4CAF50" stroke-width="1.5" />
+        <!-- soil line -->
+        <ellipse cx="22" cy="32" rx="12" ry="3" fill="#3d2010" opacity=".7" />
+        <!-- roots animated -->
+        <path class="root r1" d="M22 32 C18 30 15 28 13 25" stroke="#c8a84b" stroke-width="1.3" stroke-linecap="round"
+          fill="none" stroke-dasharray="12" stroke-dashoffset="12" />
+        <path class="root r2" d="M22 32 C26 30 29 28 31 25" stroke="#c8a84b" stroke-width="1.3" stroke-linecap="round"
+          fill="none" stroke-dasharray="12" stroke-dashoffset="12" />
+        <path class="root r3" d="M22 32 V36" stroke="#c8a84b" stroke-width="1.4" stroke-linecap="round" fill="none"
+          stroke-dasharray="6" stroke-dashoffset="6" />
+        <!-- stem -->
+        <path class="stem" d="M22 32 V14" stroke="#4CAF50" stroke-width="2.2" stroke-linecap="round"
+          stroke-dasharray="20" stroke-dashoffset="20" />
+        <!-- left leaf -->
+        <path class="leaf l1" d="M22 24 C18 22 14 18 15 14 C18 13 22 17 22 22" fill="#4CAF50" opacity="0"
+          transform-origin="22 24" />
+        <!-- right leaf -->
+        <path class="leaf l2" d="M22 19 C26 17 30 13 28 9 C25 8 22 12 22 17" fill="#6fcf72" opacity="0"
+          transform-origin="22 19" />
+        <!-- bud -->
+        <circle class="bud" cx="22" cy="12" r="3.5" fill="#c8a84b" opacity="0" />
+        <!-- carbon atom overlay subtle -->
+        <circle cx="8" cy="8" r="2" stroke="rgba(200,168,75,.3)" stroke-width=".8" fill="none" />
+        <circle cx="36" cy="36" r="1.5" stroke="rgba(200,168,75,.25)" stroke-width=".8" fill="none" />
+      </svg>
+      <div class="nav-logo-text">
+        <span>AgroTechners Biotech</span>
+        <span>Pvt. Ltd. · Dhule, MH</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#technology">Technology</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#patent">Patent</a></li>
+      <li><a href="#contact" class="nav-cta">Partner With Us</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" role="button" aria-label="Toggle navigation" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">PCT Patented Technology · WO 2025/057241 A1</div>
+        <h1 class="hero-h1">Reviving <em>Dead Land</em><br>with Bamboo Science</h1>
+        <p class="hero-sub">India's first patented Decarboscrubber apparatus — converting bamboo biomass into organic
+          liquid fertilizer, clean fuel gas, and Carbon based Soil Sequister. Proven on barren land. Now bearing fruit.
+        </p>
+        <div class="hero-btns">
+          <a href="#technology" class="btn-primary">Explore the Technology</a>
+          <a href="#contact" class="btn-outline">Partner With Us</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>200L</strong> Liquid Fertilizer </div>
+          <div class="hero-stat"><strong>230kg</strong> Carbon based Soil Sequister </div>
+          <div class="hero-stat"><strong>Zero</strong> CO₂ Emissions</div>
+        </div>
+        <!-- Carbon Credit strip -->
+        <div class="carbon-strip">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="15" stroke="#c8a84b" stroke-width="1.2" fill="none" />
+            <text x="16" y="20" text-anchor="middle" fill="#c8a84b" font-size="12" font-weight="700"
+              font-family="serif">C</text>
+            <circle cx="16" cy="4" r="2.5" fill="#4CAF50" opacity=".7" />
+            <circle cx="28" cy="10" r="2" fill="#4CAF50" opacity=".5" />
+            <circle cx="28" cy="22" r="2" fill="#4CAF50" opacity=".5" />
+            <circle cx="16" cy="28" r="2.5" fill="#4CAF50" opacity=".7" />
+            <circle cx="4" cy="22" r="2" fill="#4CAF50" opacity=".5" />
+            <circle cx="4" cy="10" r="2" fill="#4CAF50" opacity=".5" />
+            <line x1="16" y1="4" x2="16" y2="13" stroke="#c8a84b" stroke-width=".7" opacity=".4" />
+            <line x1="28" y1="10" x2="21" y2="14" stroke="#c8a84b" stroke-width=".7" opacity=".4" />
+            <line x1="28" y1="22" x2="21" y2="18" stroke="#c8a84b" stroke-width=".7" opacity=".4" />
+            <line x1="16" y1="28" x2="16" y2="19" stroke="#c8a84b" stroke-width=".7" opacity=".4" />
+            <line x1="4" y1="22" x2="11" y2="18" stroke="#c8a84b" stroke-width=".7" opacity=".4" />
+            <line x1="4" y1="10" x2="11" y2="14" stroke="#c8a84b" stroke-width=".7" opacity=".4" />
+          </svg>
+          <div class="carbon-strip-text">
+            Carbon based Soil Sequister output is eligible for <strong>verified carbon credits</strong><br>
+            <strong>230 kg CO₂ sequestered</strong> per tonne of biomass processed
+          </div>
+        </div>
+      </div>
+      <!-- Animated Growing Plant -->
+      <div class="hero-visual">
+        <canvas id="plantCanvas"
+          aria-label="Animated growing bamboo plant with carbon sequestration visualization"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARBON CREDIT BAND -->
+  <div id="carbonband">
+    <div class="cb-inner">
+      <div class="cb-left">
+        <div class="cb-icon">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <circle cx="13" cy="13" r="12" stroke="#c8a84b" stroke-width="1.3" fill="none" /><text x="13" y="18"
+              text-anchor="middle" fill="#c8a84b" font-size="13" font-weight="700" font-family="serif">C</text>
+          </svg>
+        </div>
+        <div>
+          <div class="cb-title">Carbon Credit Eligible Technology</div>
+          <div class="cb-sub">Carbon based Soil Sequister output meets VERRA & Gold Standard criteria for carbon
+            sequestration credits</div>
+        </div>
+      </div>
+      <div class="cb-stats">
+        <div class="cb-stat">
+          <div class="num">230kg</div>
+          <div class="lbl">CO₂ Sequestered/tonne</div>
+        </div>
+        <div class="cb-stat">
+          <div class="num">150+</div>
+          <div class="lbl">Countries Protected</div>
+        </div>
+        <div class="cb-stat">
+          <div class="num">0</div>
+          <div class="lbl">Carbon Emissions</div>
+        </div>
+      </div>
+      <a href="#contact" class="cb-cta">Get Carbon Report →</a>
+    </div>
+  </div>
+
+  <!-- OUTPUTS -->
+  <section id="outputs">
+    <div class="container">
+      <div style="margin-bottom:3.5rem">
+        <div class="section-label">What We Produce</div>
+        <h2 class="section-heading">Three Outputs. One Process.</h2>
+        <p class="section-sub">From every tonne of bamboo or grass biomass fed into the Decarboscrubber, three valuable
+          products are simultaneously generated.</p>
+      </div>
+      <div class="outputs-grid">
+        <div class="output-card">
+          <div class="output-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 4C10 8 6 12 6 17C6 21.4 9.6 25 14 25C18.4 25 22 21.4 22 17C22 12 18 8 14 4Z" stroke="#4CAF50"
+                stroke-width="1.5" fill="none" opacity=".8" />
+              <path d="M14 10C12 13 10 16 10 18.5C10 20.4 11.8 22 14 22" stroke="#2d8a32" stroke-width="1.5"
+                stroke-linecap="round" fill="none" />
+            </svg></div>
+          <div class="yield-badge">~200 Litres per tonne</div>
+          <h3>Organic Liquid Fertilizer</h3>
+          <p>Rich in micronutrients — Zinc, Copper, Iron, Nitrogen, Magnesium, Boron & Sulphur. Proven to restore barren
+            soil. Zero petroleum. 100% organic.</p>
+          <a href="products.html" class="view-products">View all products →</a>
+        </div>
+        <div class="output-card">
+          <div class="output-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 5C14 5 10 10 10 15C10 18 11.5 20 14 21C16.5 20 18 18 18 15C18 10 14 5 14 5Z" stroke="#c8a84b"
+                stroke-width="1.5" fill="none" opacity=".8" />
+              <path d="M12 23H16M14 21V23" stroke="#c8a84b" stroke-width="2" stroke-linecap="round" />
+            </svg></div>
+          <div class="yield-badge">~130 kg per tonne</div>
+          <h3>Clean Fuel Gas</h3>
+          <p>Methane, hydrogen & carbon monoxide generated during the process. Self-powers the apparatus, reducing
+            external energy dependency significantly.</p>
+          <a href="products.html" class="view-products">View all products →</a>
+        </div>
+        <div class="output-card">
+          <div class="output-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="7" y="7" width="14" height="14" rx="3" stroke="#1a3d0a" stroke-width="1.5" fill="none"
+                opacity=".8" />
+              <rect x="10" y="10" width="8" height="8" rx="2" fill="#4CAF50" opacity=".4" />
+              <circle cx="14" cy="14" r="1.5" fill="#1a3d0a" />
+            </svg></div>
+          <div class="yield-badge">~230 kg per tonne</div>
+          <h3>Carbon based Soil Sequister / Activated Carbon</h3>
+          <p>High-grade activated charcoal for soil amendment, water filtration, and carbon sequestration. <strong
+              style="color:var(--forest)">Eligible for verified carbon credits.</strong></p>
+          <a href="products.html" class="view-products">View all products →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section id="technology">
+    <div class="container">
+      <div class="section-label">The Decarboscrubber</div>
+      <h2 class="section-heading">Patented Apparatus.<br>Proven Process.</h2>
+      <div class="tech-inner" style="margin-top:2.5rem">
+        <div>
+          <div class="steps-flow">
+            <div class="step-item" data-num="1">
+              <div class="step-content">
+                <h4>Feed Biomass</h4>
+                <p>Bamboo, paddy, bagasse, or coconut shell fiber loaded into the input cylinder. Works regardless of
+                  moisture content. Feed size: 3mm to 8 feet.</p>
+              </div>
+            </div>
+            <div class="step-item" data-num="2">
+              <div class="step-content">
+                <h4>Heating Cycle</h4>
+                <p>De-carbonizer heats to 460°C over 3–5 hours using precision heating pads and rods. Smart sensor
+                  control. Two modes: Regular and Power Saving.</p>
+              </div>
+            </div>
+            <div class="step-item" data-num="3">
+              <div class="step-content">
+                <h4>Gas Purification</h4>
+                <p>Three-stage purifier — liquid scrubber → dry separator → refrigerated scrubber — cleans gases and
+                  captures dissolved micronutrients.</p>
+              </div>
+            </div>
+            <div class="step-item" data-num="4">
+              <div class="step-content">
+                <h4>Collect Outputs</h4>
+                <p>Liquid fertilizer, fuel gas (methane/hydrogen), and Carbon based Soil Sequister collected separately
+                  through dedicated output valves. Zero carbon emissions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tech-callout">
+            <p>"In one operational cycle of <strong>3 hours</strong>, 1 tonne of bamboo yields <strong>200 litres of
+                organic fertilizer</strong>, <strong>230 kg of activated charcoal</strong>, and <strong>130 kg of fuel
+                gas</strong> — with <strong>zero carbon emissions</strong>."</p>
+          </div>
+        </div>
+        <div class="apparatus-diagram">
+          <h4>Apparatus Flow Diagram</h4>
+          <svg viewBox="0 0 320 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="90" y="10" width="140" height="50" rx="8" fill="#4CAF50" opacity=".2" stroke="#4CAF50"
+              stroke-width="1.5" />
+            <text x="160" y="32" text-anchor="middle" fill="#6fcf72" font-size="9" font-family="monospace"
+              letter-spacing="1">INPUT CYLINDER</text>
+            <text x="160" y="48" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="8"
+              font-family="monospace">Bamboo / Grass Biomass</text>
+            <line x1="160" y1="60" x2="160" y2="90" stroke="#4CAF50" stroke-width="1.5" stroke-dasharray="4,3" />
+            <polygon points="155,88 165,88 160,96" fill="#4CAF50" />
+            <rect x="60" y="96" width="200" height="65" rx="8" fill="#1a4010" stroke="#c8a84b" stroke-width="1.5" />
+            <text x="160" y="120" text-anchor="middle" fill="#c8a84b" font-size="10" font-family="monospace"
+              letter-spacing="1" font-weight="bold">DE-CARBONIZER</text>
+            <text x="160" y="135" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="7.5"
+              font-family="monospace">460°C · Smart Sensors · 3–5 hrs</text>
+            <text x="160" y="150" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="7"
+              font-family="monospace">Regular Mode / Power Saving Mode</text>
+            <line x1="160" y1="161" x2="160" y2="190" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="4,3" />
+            <polygon points="155,188 165,188 160,196" fill="#c8a84b" />
+            <rect x="60" y="196" width="200" height="80" rx="8" fill="#0f2020" stroke="#4CAF50" stroke-width="1.5" />
+            <text x="160" y="218" text-anchor="middle" fill="#4CAF50" font-size="10" font-family="monospace"
+              letter-spacing="1" font-weight="bold">3-STAGE GAS PURIFIER</text>
+            <text x="160" y="233" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="7.5"
+              font-family="monospace">① Liquid Scrubber</text>
+            <text x="160" y="248" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="7.5"
+              font-family="monospace">② Dry Separator</text>
+            <text x="160" y="263" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="7.5"
+              font-family="monospace">③ Refrigerated Scrubber</text>
+            <line x1="100" y1="276" x2="70" y2="310" stroke="#4CAF50" stroke-width="1.5" stroke-dasharray="3,3" />
+            <line x1="160" y1="276" x2="160" y2="310" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="3,3" />
+            <line x1="220" y1="276" x2="250" y2="310" stroke="#aaa" stroke-width="1.5" stroke-dasharray="3,3" />
+            <rect x="20" y="310" width="100" height="50" rx="6" fill="rgba(76,175,80,.15)" stroke="#4CAF50"
+              stroke-width="1" />
+            <text x="70" y="330" text-anchor="middle" fill="#6fcf72" font-size="8.5"
+              font-family="monospace">LIQUID</text>
+            <text x="70" y="343" text-anchor="middle" fill="#6fcf72" font-size="8.5"
+              font-family="monospace">FERTILIZER</text>
+            <text x="70" y="356" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="7"
+              font-family="monospace">~200 L/tonne</text>
+            <rect x="110" y="310" width="100" height="50" rx="6" fill="rgba(200,168,75,.12)" stroke="#c8a84b"
+              stroke-width="1" />
+            <text x="160" y="330" text-anchor="middle" fill="#e2c97a" font-size="8.5" font-family="monospace">FUEL
+              GAS</text>
+            <text x="160" y="343" text-anchor="middle" fill="#e2c97a" font-size="8.5"
+              font-family="monospace">CH₄/H₂/CO</text>
+            <text x="160" y="356" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="7"
+              font-family="monospace">~130 kg/tonne</text>
+            <rect x="200" y="310" width="100" height="50" rx="6" fill="rgba(255,255,255,.06)"
+              stroke="rgba(255,255,255,.25)" stroke-width="1" />
+            <text x="250" y="330" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="8.5"
+              font-family="monospace">Carbon based Soil Sequister /</text>
+            <text x="250" y="343" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="8.5"
+              font-family="monospace">CARBON CR.</text>
+            <text x="250" y="356" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="7"
+              font-family="monospace">~230 kg/tonne</text>
+            <rect x="90" y="378" width="140" height="32" rx="16" fill="rgba(76,175,80,.1)" stroke="#4CAF50"
+              stroke-width="1" />
+            <text x="160" y="399" text-anchor="middle" fill="#6fcf72" font-size="8.5" font-family="monospace"
+              letter-spacing="1">✦ ZERO CO₂ EMISSIONS ✦</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof">
+    <div class="container">
+      <div class="section-label">Field Tested</div>
+      <h2 class="section-heading" style="color:#fff">From Barren Land to Bearing Fruit.</h2>
+      <p class="section-sub">Our fertilizer was tested on completely barren land — land that grew nothing. Today, that
+        same land grows trees and bears fruit. This is the proof.</p>
+      <div class="proof-inner">
+        <div>
+          <div class="proof-images">
+            <div>
+              <div class="proof-img proof-img-before">
+                <div class="proof-img-inner"><svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect x="8" y="30" width="32" height="10" rx="2" fill="#8B7355" opacity=".6" />
+                    <path d="M8 30L24 18L40 30" fill="#a08060" opacity=".5" />
+                  </svg><span style="margin-top:8px;opacity:.6;font-size:.7rem">Barren Land</span></div>
+              </div>
+              <div class="proof-img-label">Before treatment</div>
+            </div>
+            <div>
+              <div class="proof-img proof-img-after">
+                <div class="proof-img-inner"><svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect x="8" y="35" width="32" height="8" rx="2" fill="#2d5a1b" opacity=".8" />
+                    <path d="M24 35V15" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round" />
+                    <path d="M24 28C19 24 14 20 16 15C20 14 24 19 24 25" fill="#4CAF50" opacity=".85" />
+                    <path d="M24 22C29 18 33 14 31 10C28 9 24 14 24 20" fill="#6fcf72" opacity=".8" />
+                    <circle cx="24" cy="12" r="3" fill="#c8a84b" opacity=".9" />
+                  </svg><span style="margin-top:8px;font-size:.7rem">With AgroTechners</span></div>
+              </div>
+              <div class="proof-img-label">After fertilizer treatment</div>
+            </div>
+          </div>
+        </div>
+        <ul class="proof-points">
+          <li>
+            <div class="proof-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                <path d="M1 5L4.5 8.5L11 1.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></div>Field-tested on completely barren wasteland
+          </li>
+          <li>
+            <div class="proof-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                <path d="M1 5L4.5 8.5L11 1.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></div>Soil microbiome fully restored through organic inputs
+          </li>
+          <li>
+            <div class="proof-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                <path d="M1 5L4.5 8.5L11 1.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></div>Trees now grow and bear fruit on previously dead soil
+          </li>
+          <li>
+            <div class="proof-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                <path d="M1 5L4.5 8.5L11 1.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></div>100% organic — no chemicals, no petroleum inputs
+          </li>
+          <li>
+            <div class="proof-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                <path d="M1 5L4.5 8.5L11 1.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></div>Micronutrients verified: Zn, Cu, Fe, N, Mg, B, S
+          </li>
+          <li>
+            <div class="proof-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                <path d="M1 5L4.5 8.5L11 1.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></div>PCT internationally patented — WO 2025/057241 A1
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVE -->
+  <section id="serve">
+    <div class="container">
+      <div class="section-label">Who We Serve</div>
+      <h2 class="section-heading" style="color:#fff">Built for India's<br>Agricultural Future.</h2>
+      <p class="section-sub">Three different stakeholders. One proven technology.</p>
+      <div class="serve-grid">
+        <div class="serve-card">
+          <div class="serve-tag">Farmers</div>
+          <h3>Restore Your Soil. Improve Your Yield.</h3>
+          <p>Organic liquid fertilizer that feeds your soil's microbiome without chemicals. Healthier soil, higher
+            yield, lower input cost — naturally.</p><a href="#contact" class="serve-link">Enquire about pricing →</a>
+        </div>
+        <div class="serve-card">
+          <div class="serve-tag">State & Central Govt</div>
+          <h3>Scalable Land Restoration at District Level.</h3>
+          <p>Deploy Decarboscrubber units across degraded land under PKVY, NMSA, and state horticulture schemes.
+            Data-backed, policy-aligned.</p><a href="#contact" class="serve-link">Download technology brief →</a>
+        </div>
+        <div class="serve-card">
+          <div class="serve-tag">NGOs & Corporates</div>
+          <h3>Impact You Can Measure.</h3>
+          <p>Partner for ecosystem restoration with verifiable outcomes. Carbon credits from Carbon based Soil Sequister
+            add an additional layer of impact accountability.</p><a href="#contact" class="serve-link">Explore
+            partnership →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATENT -->
+  <section id="patent">
+    <div class="container">
+      <div class="section-label">Intellectual Property</div>
+      <h2 class="section-heading">Globally Protected Innovation.</h2>
+      <div class="patent-inner">
+        <div class="patent-certificate">
+          <div class="patent-logo-row"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="13" stroke="#c8a84b" stroke-width="1.2" fill="none" />
+              <path d="M8 14L11.5 17.5L20 10" stroke="#c8a84b" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" fill="none" />
+            </svg><span class="patent-wipo">WIPO · PCT International Patent</span></div>
+          <div class="patent-num">WO 2025/057241 A1</div>
+          <div class="patent-title-cert">Patent Cooperation Treaty</div>
+          <ul class="patent-meta">
+            <li><span>Filed</span><span>September 2023</span></li>
+            <li><span>Published</span><span>March 2025</span></li>
+            <li><span>Inventors</span><span>Shashank & Urmila Joshi</span></li>
+            <li><span>Assignee</span><span>AgroTechners Biotech Pvt. Ltd.</span></li>
+            <li><span>Origin</span><span>Dhule, Maharashtra, India</span></li>
+            <li><span>Coverage</span><span>150+ Countries</span></li>
+          </ul>
+        </div>
+        <div class="patent-text">
+          <h3>International Protection Across 150+ Countries</h3>
+          <p>The Decarboscrubber Apparatus is protected under the Patent Cooperation Treaty (PCT), providing
+            international patent protection across 150+ countries including India, USA, Europe, Japan, China, Canada,
+            and all ARIPO, Eurasian, and OAPI member states.</p>
+          <p>The patent covers the full apparatus design, dual heating/cooling cycle, three-stage gas purification
+            system, and the method for generating liquid fertilizer, gaseous fuel, and Carbon based Soil Sequister
+            simultaneously from grass-type biomass.</p>
+          <div class="patent-countries">
+            <span class="country-tag">India</span><span class="country-tag">USA</span><span
+              class="country-tag">Europe</span><span class="country-tag">Japan</span><span
+              class="country-tag">China</span><span class="country-tag">Canada</span><span
+              class="country-tag">ARIPO</span><span class="country-tag">Eurasian</span><span
+              class="country-tag">OAPI</span><span class="country-tag more">+140 more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">About AgroTechners</div>
+      <h2 class="section-heading">The Minds Behind the Mission.</h2>
+      <div class="about-inner" style="margin-top:2.5rem">
+        <div class="about-story">
+          <p>AgroTechners Biotech Pvt. Ltd. was founded by <strong>Shashank Balkrishna Joshi</strong> and <strong>Urmila
+              Shashank Joshi</strong> in Dhule, Maharashtra. After years of independent R&D into biomass
+            decarbonization, they developed and patented the Decarboscrubber.</p>
+          <p>Their fertilizer was tested on barren wasteland, which today grows trees and bears fruit. The mission is
+            simple: restore India's degraded land, support farmers with organic inputs, and build a sustainable circular
+            economy from biomass.</p>
+          <p>From a workshop in Dhule to international patent recognition under WIPO's PCT framework — AgroTechners
+            represents the spirit of grassroots Indian innovation meeting global scientific standards.</p>
+        </div>
+        <div class="founder-card">
+          <div class="founder-photo"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="30" r="18" fill="rgba(76,175,80,.2)" stroke="rgba(76,175,80,.4)" stroke-width="1.5" />
+              <path d="M15 68C15 52 25 44 40 44C55 44 65 52 65 68" fill="rgba(76,175,80,.15)"
+                stroke="rgba(76,175,80,.3)" stroke-width="1.5" stroke-linecap="round" />
+              <circle cx="40" cy="28" r="10" fill="rgba(76,175,80,.3)" /><text x="40" y="33" text-anchor="middle"
+                fill="rgba(255,255,255,.6)" font-size="11" font-family="sans-serif">S&amp;U</text>
+            </svg></div>
+          <div class="founder-info">
+            <h4>Shashank & Urmila Joshi</h4>
+            <p>Founders & Inventors</p>
+            <p
+              style="color:rgba(255,255,255,.5);font-size:.78rem;font-weight:400;margin-top:.4rem;letter-spacing:0;text-transform:none">
+              Dhule, Maharashtra, India</p>
+          </div>
+        </div>
+      </div>
+      <div class="values-grid">
+        <div class="value-tile">
+          <h5>Mission</h5>
+          <p>Restore degraded land across India through organic, zero-emission biomass technology.</p>
+        </div>
+        <div class="value-tile">
+          <h5>Vision</h5>
+          <p>Make organic farming accessible and profitable for every farmer in India and beyond.</p>
+        </div>
+        <div class="value-tile">
+          <h5>Technology</h5>
+          <p>PCT-patented, zero-emission Decarboscrubber covering 150+ countries worldwide.</p>
+        </div>
+        <div class="value-tile">
+          <h5>Carbon Reach</h5>
+          <p>230 kg CO₂ sequestered per tonne — verifiable, credit-eligible, globally recognised.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-label" style="color:var(--forest)">Get In Touch</div>
+      <h2 class="section-heading">Partner, Buy, or Collaborate.</h2>
+      <p class="section-sub">Whether you're a farmer, government officer, NGO, or investor — we'd love to hear from you.
+      </p>
+      <div class="contact-form" id="contactFormWrapper">
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName"
+                placeholder="Your full name" autocomplete="name"><span class="form-error" id="nameErr">Please enter your
+                name.</span></div>
+            <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email"
+                placeholder="you@example.com" autocomplete="email"><span class="form-error" id="emailErr">Please enter a
+                valid email.</span></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone"
+                placeholder="+91 XXXXX XXXXX" autocomplete="tel"></div>
+            <div class="form-group"><label for="role">I am a *</label><select id="role">
+                <option value="">Select your role</option>
+                <option>Farmer</option>
+                <option>Government Official</option>
+                <option>NGO Representative</option>
+                <option>Corporate CSR</option>
+                <option>Investor</option>
+                <option>Media</option>
+                <option>Researcher</option>
+              </select><span class="form-error" id="roleErr">Please select your role.</span></div>
+          </div>
+          <div class="form-group"><label for="district">State / District</label><input type="text" id="district"
+              placeholder="e.g. Nashik, Maharashtra"></div>
+          <div class="form-group"><label for="message">Message or Enquiry *</label><textarea id="message"
+              placeholder="Tell us how we can help or collaborate..."></textarea><span class="form-error"
+              id="msgErr">Please enter your message.</span></div>
+          <button type="submit" class="btn-submit">Send Enquiry</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" style="margin:0 auto 1rem;display:block">
+            <circle cx="26" cy="26" r="25" stroke="#4CAF50" stroke-width="2" fill="rgba(76,175,80,.08)" />
+            <path d="M15 26L22 33L38 18" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" fill="none" />
+          </svg>
+          <h4>Thank you for reaching out!</h4>
+          <p>Our team will get back to you within 24–48 hours.</p>
+        </div>
+      </div>
+      <div class="contact-chips">
+        <div class="contact-chip"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1C4.8 1 3 2.8 3 5C3 8 7 13 7 13C7 13 11 8 11 5C11 2.8 9.2 1 7 1Z" stroke="#4CAF50"
+              stroke-width="1.3" fill="none" />
+            <circle cx="7" cy="5" r="1.5" stroke="#4CAF50" stroke-width="1.2" fill="none" />
+          </svg>Dhule, Maharashtra, India</div>
+        <div class="contact-chip"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="3" width="12" height="8" rx="2" stroke="#4CAF50" stroke-width="1.3" fill="none" />
+            <path d="M1 5L7 9L13 5" stroke="#4CAF50" stroke-width="1.2" stroke-linecap="round" />
+          </svg>info@agrotechners.com</div>
+        <a href="https://wa.me/917057778505" target="_blank" class="contact-chip whatsapp"><svg width="16" height="16"
+            viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7.5" fill="none" stroke="rgba(255,255,255,.4)" stroke-width=".8" />
+            <path
+              d="M8 1C4.13 1 1 4.13 1 8C1 9.28 1.36 10.48 1.97 11.5L1.1 14.9L4.6 14.06C5.59 14.65 6.76 15 8 15C11.87 15 15 11.87 15 8C15 4.13 11.87 1 8 1Z"
+              fill="#fff" opacity=".9" />
+            <path
+              d="M5.5 5C5.3 5 5 5.1 4.8 5.3C4.5 5.6 3.8 6.3 3.8 7.7C3.8 9.1 4.8 10.4 4.9 10.6C5 10.8 6.8 13.3 9.3 14.2C11.3 14.9 11.7 14.7 12.1 14.6C12.6 14.5 13.5 13.9 13.7 13.2C13.9 12.5 13.9 11.9 13.8 11.8C13.7 11.7 13.5 11.6 13.2 11.5C12.9 11.3 11.4 10.6 11.1 10.5C10.8 10.4 10.6 10.3 10.4 10.6C10.2 10.9 9.6 11.6 9.4 11.8C9.2 12 9 12 8.7 11.9C8.4 11.7 7.4 11.4 6.3 10.4C5.4 9.6 4.8 8.6 4.6 8.3C4.4 8 4.6 7.8 4.8 7.6C4.95 7.45 5.15 7.2 5.3 7C5.45 6.8 5.5 6.6 5.65 6.4C5.8 6.1 5.65 5.9 5.55 5.7C5.5 5.6 5 4.3 4.8 3.7C4.65 3.2 4.5 3.2 5.5 5Z"
+              fill="#25D366" />
+          </svg>+91 70577 78505 · WhatsApp</a>
+        <div class="contact-chip"><svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="6" stroke="#4CAF50" stroke-width="1.3" fill="none" />
+            <path d="M1 7H13M7 1C5.5 3 4.5 5 4.5 7C4.5 9 5.5 11 7 13M7 1C8.5 3 9.5 5 9.5 7C9.5 9 8.5 11 7 13"
+              stroke="#4CAF50" stroke-width="1.2" stroke-linecap="round" />
+          </svg>agrotechners.com</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-logo-row">
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:.8rem">
+          <svg width="40" height="40" viewBox="0 0 38 38" fill="none">
+            <circle cx="19" cy="19" r="18" fill="#1a3d0a" stroke="#4CAF50" stroke-width="1.5" />
+            <path d="M19 28C16 26 13 24 12 21" stroke="#c8a84b" stroke-width="1.4" stroke-linecap="round" fill="none" />
+            <path d="M19 28C22 26 25 24 26 21" stroke="#c8a84b" stroke-width="1.4" stroke-linecap="round" fill="none" />
+            <path d="M19 28V33" stroke="#c8a84b" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" />
+            <path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50" opacity=".9" />
+            <path d="M19 16C23 14 26 11 25 7C22 7 19 10 19 14" fill="#6fcf72" opacity=".85" />
+            <circle cx="19" cy="10" r="2.5" fill="#c8a84b" />
+          </svg>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff">AgroTechners
+              Biotech Pvt. Ltd.</div>
+            <div style="font-size:.72rem;color:var(--gold);letter-spacing:.1em">Dhule, Maharashtra · EST. 2023</div>
+          </div>
+        </div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.45);max-width:480px;margin:0 auto;line-height:1.6">
+          Pioneering biomass decarbonization technology for soil restoration, organic agriculture, and a circular
+          bioeconomy.</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Technology</h5>
+          <ul>
+            <li><a href="#technology">Decarboscrubber</a></li>
+            <li><a href="#technology">How It Works</a></li>
+            <li><a href="#patent">Patent Details</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Products</h5>
+          <ul>
+            <li><a href="products.html">Liquid Fertilizer</a></li>
+            <li><a href="products.html">Carbon based Soil Sequister</a></li>
+            <li><a href="products.html">Fuel Gas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#contact">Download Brochure</a></li>
+            <li><a href="#contact">Technology Brief</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="social-row">
+        <a href="#" class="social-btn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 18 18"
+            fill="none">
+            <rect x="1" y="1" width="16" height="16" rx="3" stroke="rgba(255,255,255,.5)" stroke-width="1.2"
+              fill="none" />
+            <path d="M4 7V14M4 4.5V5.5" stroke="rgba(255,255,255,.6)" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M8 14V10C8 8.8 8.8 8 10 8C11.2 8 12 8.8 12 10V14M8 8V14" stroke="rgba(255,255,255,.6)"
+              stroke-width="1.3" stroke-linecap="round" fill="none" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 17 17"
+            fill="none">
+            <rect x="1.5" y="1.5" width="14" height="14" rx="4" stroke="rgba(255,255,255,.5)" stroke-width="1.2"
+              fill="none" />
+            <circle cx="8.5" cy="8.5" r="3" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none" />
+            <circle cx="12.8" cy="4.2" r=".8" fill="rgba(255,255,255,.6)" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="YouTube"><svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+            <rect x="1" y="1" width="16" height="12" rx="3" stroke="rgba(255,255,255,.5)" stroke-width="1.2"
+              fill="none" />
+            <path d="M7 4.5L12 7L7 9.5V4.5Z" fill="rgba(255,255,255,.6)" />
+          </svg></a>
+        <a href="https://wa.me/917057778505" class="social-btn" aria-label="WhatsApp"
+          style="background:rgba(37,211,102,.2)"><svg width="17" height="17" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7.5" stroke="rgba(37,211,102,.6)" stroke-width=".8" fill="none" />
+            <path
+              d="M8 1C4.13 1 1 4.13 1 8C1 9.28 1.36 10.48 1.97 11.5L1.1 14.9L4.6 14.06C5.59 14.65 6.76 15 8 15C11.87 15 15 11.87 15 8C15 4.13 11.87 1 8 1Z"
+              fill="#25D366" opacity=".8" />
+          </svg></a>
+      </div>
+      <div class="footer-bottom">© 2025 AgroTechners Biotech Pvt. Ltd. &nbsp;·&nbsp; Dhule, Maharashtra, India
+        &nbsp;·&nbsp; PCT Patent WO 2025/057241 A1 &nbsp;·&nbsp; All Rights Reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── NAVBAR ───
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', scrollY > 20));
+    const hamburger = document.getElementById('hamburger'), navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => { const o = navLinks.classList.toggle('open'); hamburger.setAttribute('aria-expanded', o) });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // ─── ANIMATED GROWING PLANT (hero canvas) ───
+    const pc = document.getElementById('plantCanvas');
+    const ctx = pc.getContext('2d');
+    function resizePC() { pc.width = pc.offsetWidth; pc.height = pc.offsetHeight }
+    resizePC();
+    window.addEventListener('resize', () => { resizePC(); prog = 0; startTime = Date.now() });
+
+    let prog = 0, startTime = Date.now();
+    const DURATION = 4200;
+
+    function drawPlant(t) {
+      const w = pc.width, h = pc.height;
+      ctx.clearRect(0, 0, w, h);
+      const cx = w / 2, groundY = h * .82;
+
+      // soil
+      const sg = ctx.createEllipse ? null : null;
+      ctx.beginPath(); ctx.ellipse(cx, groundY, w * .38, h * .04, 0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(61,32,16,.7)'; ctx.fill();
+      ctx.beginPath(); ctx.ellipse(cx, groundY, w * .32, h * .025, 0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(45,26,8,.9)'; ctx.fill();
+
+      // background carbon molecules
+      const carbonAlpha = Math.min(t * 1.5, 0.5);
+      const mols = [{ x: w * .12, y: h * .2 }, { x: w * .85, y: h * .25 }, { x: w * .78, y: h * .6 }, { x: w * .1, y: h * .65 }];
+      mols.forEach(m => {
+        ctx.beginPath(); ctx.arc(m.x, m.y, 8, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(200,168,75,${carbonAlpha * .6})`; ctx.lineWidth = 1; ctx.stroke();
+        ctx.fillStyle = `rgba(200,168,75,${carbonAlpha * .4})`; ctx.font = 'bold 8px monospace';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('C', m.x, m.y);
+        // bonds
+        if (m.x < w * .5) {
+          ctx.beginPath(); ctx.moveTo(m.x + 10, m.y); ctx.lineTo(m.x + 22, m.y - 8);
+          ctx.strokeStyle = `rgba(76,175,80,${carbonAlpha * .3})`; ctx.lineWidth = .7; ctx.stroke();
+        }
+      });
+
+      // roots
+      if (t > 0.08) {
+        const rp = Math.min((t - .08) / .2, 1);
+        const roots = [
+          { x1: cx, y1: groundY, x2: cx - w * .18, y2: groundY + h * .06, c: '#c8a84b' },
+          { x1: cx, y1: groundY, x2: cx + w * .18, y2: groundY + h * .06, c: '#c8a84b' },
+          { x1: cx, y1: groundY, x2: cx, y2: groundY + h * .09, c: '#c8a84b' },
+          { x1: cx - w * .18, y1: groundY + h * .06, x2: cx - w * .24, y2: groundY + h * .1, c: 'rgba(200,168,75,.5)' },
+          { x1: cx + w * .18, y1: groundY + h * .06, x2: cx + w * .24, y2: groundY + h * .1, c: 'rgba(200,168,75,.5)' },
+        ];
+        roots.forEach(r => {
+          ctx.beginPath(); ctx.moveTo(r.x1, r.y1);
+          ctx.lineTo(r.x1 + (r.x2 - r.x1) * rp, r.y1 + (r.y2 - r.y1) * rp);
+          ctx.strokeStyle = r.c; ctx.lineWidth = 1.5 * rp + .5; ctx.lineCap = 'round'; ctx.stroke();
+        });
+      }
+
+      // stem
+      const stemH = h * .68;
+      const stemProgress = Math.min(t / .6, 1);
+      if (t > 0.05) {
+        const stemLen = stemH * stemProgress;
+        ctx.beginPath(); ctx.moveTo(cx, groundY); ctx.lineTo(cx, groundY - stemLen);
+        ctx.strokeStyle = '#4CAF50'; ctx.lineWidth = 7 * stemProgress + 2; ctx.lineCap = 'round'; ctx.stroke();
+      }
+
+      // leaves
+      function drawLeaf(px, py, flip, opacity, scale) {
+        ctx.save(); ctx.globalAlpha = opacity;
+        ctx.translate(px, py); if (flip) ctx.scale(-1, 1); ctx.scale(scale, scale);
+        ctx.beginPath(); ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(-30, -15, -55, -35, -50, -65);
+        ctx.bezierCurveTo(-25, -70, 0, -45, 0, -10);
+        ctx.closePath();
+        ctx.fillStyle = '#4CAF50'; ctx.fill();
+        // vein
+        ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(-20, -25, -38, -45, -49, -63);
+        ctx.strokeStyle = 'rgba(30,100,30,.4)'; ctx.lineWidth = 1; ctx.stroke();
+        ctx.restore();
+      }
+      function drawLeafR(px, py, flip, opacity, scale) {
+        ctx.save(); ctx.globalAlpha = opacity;
+        ctx.translate(px, py); if (flip) ctx.scale(-1, 1); ctx.scale(scale, scale);
+        ctx.beginPath(); ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(28, -12, 50, -28, 48, -55);
+        ctx.bezierCurveTo(24, -62, 0, -38, 0, -8);
+        ctx.closePath(); ctx.fillStyle = '#6fcf72'; ctx.fill();
+        ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(18, -20, 35, -38, 47, -53);
+        ctx.strokeStyle = 'rgba(40,110,40,.35)'; ctx.lineWidth = 1; ctx.stroke();
+        ctx.restore();
+      }
+
+      if (t > .3) {
+        const lp = Math.min((t - .3) / .25, 1);
+        const ly1 = groundY - stemH * .45 * stemProgress;
+        drawLeaf(cx, ly1, false, lp * .9, lp * .9);
+      }
+      if (t > .45) {
+        const lp = Math.min((t - .45) / .25, 1);
+        const ly2 = groundY - stemH * .62 * stemProgress;
+        drawLeafR(cx, ly2, false, lp * .85, lp * .85);
+      }
+      if (t > .58) {
+        const lp = Math.min((t - .58) / .2, 1);
+        const ly3 = groundY - stemH * .78 * stemProgress;
+        drawLeaf(cx, ly3, true, lp * .8, lp * .75);
+      }
+      if (t > .7) {
+        const lp = Math.min((t - .7) / .2, 1);
+        const ly4 = groundY - stemH * .88 * stemProgress;
+        drawLeafR(cx, ly4, true, lp * .75, lp * .7);
+      }
+
+      // bud / flower
+      if (t > .8) {
+        const bp = Math.min((t - .8) / .2, 1);
+        const bx = cx, by = groundY - stemH * stemProgress * .98;
+        ctx.beginPath(); ctx.arc(bx, by, 16 * bp, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200,168,75,${bp * .85})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(bx, by, 11 * bp, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(226,201,122,${bp})`; ctx.fill();
+        // glow rings
+        [20, 28, 36].forEach((r, i) => {
+          ctx.beginPath(); ctx.arc(bx, by, r * bp, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(200,168,75,${bp * (0.25 - i * .07)})`; ctx.lineWidth = 1; ctx.stroke();
+        });
+      }
+
+      // CO2 captured particles floating up
+      if (t > .5) {
+        const n = 6;
+        for (let i = 0; i < n; i++) {
+          const phase = (t + i / n) % 1;
+          const px = cx + (Math.sin(i * 2.4) * w * .3);
+          const py = groundY - (phase * h * .85);
+          const alpha = phase < .2 ? phase / .2 : phase > .8 ? (1 - phase) / .2 : 1;
+          ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(76,175,80,${alpha * .4 * (t > .5 ? 1 : 0)})`; ctx.fill();
+          ctx.fillStyle = `rgba(200,168,75,${alpha * .3})`;
+          ctx.font = '7px monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          if (i % 2 === 0) ctx.fillText('CO₂', px, py - 8);
+        }
+      }
+
+      // carbon credit label
+      if (t > .9) {
+        const la = Math.min((t - .9) / .1, 1);
+        const lx = cx + w * .25, ly = groundY - h * .5;
+        ctx.save(); ctx.globalAlpha = la * .8;
+        ctx.fillStyle = 'rgba(26,26,26,.75)';
+        roundRect(ctx, lx - 38, ly - 20, 76, 36, 8); ctx.fill();
+        ctx.fillStyle = '#e2c97a'; ctx.font = 'bold 9px monospace'; ctx.textAlign = 'center';
+        ctx.fillText('CARBON CREDIT', lx, ly - 5);
+        ctx.fillStyle = 'rgba(255,255,255,.6)'; ctx.font = '8px monospace';
+        ctx.fillText('ELIGIBLE ✓', lx, ly + 8);
+        ctx.restore();
+      }
+    }
+
+    function roundRect(c, x, y, w, h, r) {
+      c.beginPath(); c.moveTo(x + r, y); c.lineTo(x + w - r, y); c.arcTo(x + w, y, x + w, y + r, r);
+      c.lineTo(x + w, y + h - r); c.arcTo(x + w, y + h, x + w - r, y + h, r); c.lineTo(x + r, y + h);
+      c.arcTo(x, y + h, x, y + h - r, r); c.lineTo(x, y + r); c.arcTo(x, y, x + r, y, r); c.closePath();
+    }
+
+    function loopPlant() {
+      const elapsed = Date.now() - startTime;
+      prog = Math.min(elapsed / DURATION, 1);
+      // after full growth, gently sway
+      drawPlant(prog);
+      requestAnimationFrame(loopPlant);
+    }
+    loopPlant();
+
+    // ─── CARBON PARTICLES BACKGROUND ───
+    const cc = document.getElementById('carbonCanvas');
+    const cctx = cc.getContext('2d');
+    function resizeCC() { cc.width = window.innerWidth; cc.height = window.innerHeight }
+    resizeCC();
+    window.addEventListener('resize', resizeCC);
+
+    const particles = [];
+    for (let i = 0; i < 55; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+        vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
+        r: Math.random() * 2.5 + 1,
+        type: Math.random() > .7 ? 'c' : 'dot',
+        alpha: Math.random() * .4 + .1,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+    let ccT = 0;
+    function animCarbon() {
+      cctx.clearRect(0, 0, cc.width, cc.height);
+      ccT += .008;
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = cc.width; if (p.x > cc.width) p.x = 0;
+        if (p.y < 0) p.y = cc.height; if (p.y > cc.height) p.y = 0;
+        const a = p.alpha * (0.7 + 0.3 * Math.sin(ccT + p.pulse));
+        if (p.type === 'c') {
+          cctx.beginPath(); cctx.arc(p.x, p.y, p.r + 2, 0, Math.PI * 2);
+          cctx.strokeStyle = `rgba(200,168,75,${a * .5})`; cctx.lineWidth = .7; cctx.stroke();
+          cctx.fillStyle = `rgba(200,168,75,${a * .6})`; cctx.font = `bold ${p.r * 3}px monospace`;
+          cctx.textAlign = 'center'; cctx.textBaseline = 'middle'; cctx.fillText('C', p.x, p.y);
+        } else {
+          cctx.beginPath(); cctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          cctx.fillStyle = `rgba(76,175,80,${a})`; cctx.fill();
+        }
+      });
+      // draw some bonds between nearby particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 90) {
+            cctx.beginPath(); cctx.moveTo(particles[i].x, particles[i].y); cctx.lineTo(particles[j].x, particles[j].y);
+            cctx.strokeStyle = `rgba(76,175,80,${(1 - d / 90) * .08})`; cctx.lineWidth = .6; cctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animCarbon);
+    }
+    animCarbon();
+
+    // ─── NAVBAR LOGO ANIMATION (SVG) ───
+    function animateNavLogo() {
+      const svg = document.getElementById('navLogoSvg');
+      if (!svg) return;
+      const roots = svg.querySelectorAll('.root');
+      const stem = svg.querySelector('.stem');
+      const leaves = svg.querySelectorAll('.leaf');
+      const bud = svg.querySelector('.bud');
+      let t = 0;
+      function step() {
+        t = Math.min(t + 0.012, 1);
+        // roots
+        roots.forEach((r, i) => {
+          const p = Math.min(Math.max((t - i * .06) / .35, 0), 1);
+          r.style.strokeDashoffset = 12 * (1 - p); r.style.opacity = p;
+        });
+        // stem
+        const sp = Math.min(Math.max((t - .05) / .5, 0), 1);
+        stem.style.strokeDashoffset = 20 * (1 - sp); stem.style.opacity = sp;
+        // leaves
+        leaves.forEach((l, i) => {
+          const lp = Math.min(Math.max((t - .4 - i * .1) / .3, 0), 1);
+          l.style.opacity = lp * .9; l.style.transform = `scale(${lp})`;
+        });
+        // bud
+        const bp = Math.min(Math.max((t - .8) / .2, 0), 1);
+        bud.style.opacity = bp; bud.style.transform = `scale(${bp})`; bud.style.transformOrigin = '22px 12px';
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    window.addEventListener('load', animateNavLogo);
+
+    // ─── FORM + DATA STORAGE ───
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    function setError(iid, eid, show) {
+      const el = document.getElementById(iid), er = document.getElementById(eid);
+      el.classList.toggle('error', show); er.classList.toggle('show', show); return show;
+    }
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const role = document.getElementById('role').value;
+      const msg = document.getElementById('message').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const district = document.getElementById('district').value.trim();
+      let err = false;
+      if (setError('fullName', 'nameErr', !name)) err = true;
+      if (setError('email', 'emailErr', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) err = true;
+      if (setError('role', 'roleErr', !role)) err = true;
+      if (setError('message', 'msgErr', !msg)) err = true;
+      if (err) return;
+      // save to localStorage
+      const entries = JSON.parse(localStorage.getItem('agro_enquiries') || '[]');
+      entries.push({ id: Date.now(), name, email, phone, role, district, message: msg, timestamp: new Date().toISOString() });
+      localStorage.setItem('agro_enquiries', JSON.stringify(entries));
+      form.style.display = 'none'; success.classList.add('show');
+      // WhatsApp auto-notify
+      const waMsg = encodeURIComponent(`New Enquiry from ${name} (${role}) — ${email} ${phone ? '| ' + phone : ''} | ${district || '—'}`);
+      const waLink = document.createElement('a');
+      waLink.href = `https://wa.me/917057778505?text=${waMsg}`;
+      waLink.target = '_blank'; waLink.rel = 'noopener';
+      // silently open after a tick
+      setTimeout(() => waLink.click(), 600);
+    });
+    ['fullName', 'email', 'role', 'message'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', () => document.getElementById(id).classList.remove('error'));
+    });
+
+    // ─── SCROLL REVEAL ───
+    const obs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; obs.unobserve(e.target) } }) }, { threshold: .1 });
+    document.querySelectorAll('.output-card,.serve-card,.value-tile,.step-item').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = 'opacity .5s ease,transform .5s ease'; obs.observe(el);
+    });
+
+    // ─── ADMIN SYNC: read from localStorage and apply to page ───
+    (function applyAdminSettings() {
+      // Helper to get stored value with fallback
+      function ls(key, fallback) { try { return localStorage.getItem(key) || fallback; } catch(e) { return fallback; } }
+
+      // 1. LOGO — replace all logo SVGs with uploaded image
+      const logoData = ls('agro_logo', '');
+      if (logoData) {
+        // Navbar logo icon
+        const navLogoIcon = document.querySelector('.nav-logo-icon');
+        if (navLogoIcon) {
+          const img = document.createElement('img');
+          img.src = logoData;
+          img.style.cssText = 'width:44px;height:44px;object-fit:contain;border-radius:50%';
+          navLogoIcon.replaceWith(img);
+        }
+        // Footer logo SVG (first svg in footer-logo-row)
+        const footerLogoSvg = document.querySelector('.footer-logo-row svg');
+        if (footerLogoSvg) {
+          const img2 = document.createElement('img');
+          img2.src = logoData;
+          img2.style.cssText = 'width:40px;height:40px;object-fit:contain;border-radius:50%';
+          footerLogoSvg.replaceWith(img2);
+        }
+        // WA FAB area logo not needed
+      }
+
+      // 2. CONTACT DETAILS — chips below the contact form
+      const waNum   = ls('agro_contact_whatsapp', '+91 70577 78505');
+      const email   = ls('agro_contact_email',    'info@agrotechners.com');
+      const loc     = ls('agro_contact_location', 'Dhule, Maharashtra, India');
+
+      // Location chip (first .contact-chip)
+      const chips = document.querySelectorAll('.contact-chip');
+      if (chips[0]) chips[0].childNodes[chips[0].childNodes.length - 1].textContent = loc;
+      // Email chip
+      if (chips[1]) chips[1].childNodes[chips[1].childNodes.length - 1].textContent = email;
+      // WhatsApp chip
+      if (chips[2]) {
+        const rawNum = waNum.replace(/\D/g, '');
+        chips[2].href = 'https://wa.me/' + rawNum + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20Decarboscrubber%20technology.';
+        chips[2].childNodes[chips[2].childNodes.length - 1].textContent = waNum + ' · WhatsApp';
+      }
+      // WA FAB link
+      const waFab = document.querySelector('.wa-fab');
+      if (waFab) {
+        const rawFab = waNum.replace(/\D/g, '');
+        waFab.href = 'https://wa.me/' + rawFab + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20Decarboscrubber%20technology.';
+      }
+      // WhatsApp link in form submit
+      // Override form submit to use stored number
+      const origForm = document.getElementById('contactForm');
+      if (origForm) {
+        origForm.addEventListener('submit', function() {
+          // The existing submit handler fires first (it's defined earlier).
+          // We patch the WA link dynamically using the stored number.
+          setTimeout(function() {
+            const rawWa = ls('agro_contact_whatsapp', '917057778505').replace(/\D/g, '');
+            document.querySelector('a[href*="wa.me"]') && null; // just use the one built in submit
+          }, 0);
+        }, true);
+      }
+
+      // 3. PATENT DETAILS — patent certificate card
+      const patNum     = ls('agro_patent_num',       'WO 2025/057241 A1');
+      const patFiled   = ls('agro_patent_filed',      'September 2023');
+      const patPub     = ls('agro_patent_pub',        'March 2025');
+      const patInv     = ls('agro_patent_inventors',  'Shashank & Urmila Joshi');
+
+      const patNumEl = document.querySelector('.patent-num');
+      if (patNumEl) patNumEl.textContent = patNum;
+
+      const patMeta = document.querySelectorAll('.patent-meta li');
+      if (patMeta[0]) patMeta[0].querySelector('span:last-child').textContent = patFiled;
+      if (patMeta[1]) patMeta[1].querySelector('span:last-child').textContent = patPub;
+      if (patMeta[2]) patMeta[2].querySelector('span:last-child').textContent = patInv;
+
+      // 4. PROOF SECTION — barren & agro gallery images
+      const barren = JSON.parse(ls('agro_gallery_barren', '[]'));
+      const agro   = JSON.parse(ls('agro_gallery_agro',   '[]'));
+
+      const proofBefore = document.querySelector('.proof-img-before');
+      const proofAfter  = document.querySelector('.proof-img-after');
+
+      if (barren.length && proofBefore) {
+        proofBefore.innerHTML = '<img src="' + barren[0] + '" alt="Barren land before treatment" style="width:100%;height:100%;object-fit:cover;border-radius:12px">';
+      }
+      if (agro.length && proofAfter) {
+        proofAfter.innerHTML = '<img src="' + agro[0] + '" alt="AgroTechners treated land" style="width:100%;height:100%;object-fit:cover;border-radius:12px">';
+      }
+
+      // 5. FOOTER location text
+      const footerLocEl = document.querySelector('.footer-logo-row div div:last-child');
+      if (footerLocEl) {
+        footerLocEl.innerHTML = loc + ' · EST. 2023';
+      }
+    })();
+  </script>
+</body>
+
+</html>

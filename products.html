@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — AgroTechners Biotech Pvt. Ltd.</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --forest: #1a3d0a;
+      --forest-deep: #0f2506;
+      --green: #4CAF50;
+      --green-light: #6fcf72;
+      --green-pale: #e8f5e9;
+      --brown: #6b3a1f;
+      --gold: #c8a84b;
+      --gold-light: #e2c97a;
+      --cream: #f9f5ec;
+      --offwhite: #fafaf7;
+      --carbon: #1a1a1a;
+      --text-dark: #1a1a0e;
+      --text-muted: #5a5a4a;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--offwhite);
+      color: var(--text-dark);
+      overflow-x: hidden
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', serif
+    }
+
+    /* NAV */
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--forest-deep);
+      padding: 0 6vw;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(200, 168, 75, .15);
+      box-shadow: 0 2px 24px rgba(0, 0, 0, .3)
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, .7);
+      font-size: .88rem;
+      transition: color .2s
+    }
+
+    .nav-back:hover {
+      color: #fff
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none
+    }
+
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-size: .85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s
+    }
+
+    .nav-cta:hover {
+      background: var(--green-light)
+    }
+
+    /* HERO */
+    #phero {
+      background: linear-gradient(135deg, var(--forest-deep) 0%, #1a3d0a 60%, #2d5a1b 100%);
+      padding: 80px 6vw 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    #phero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(76, 175, 80, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(76, 175, 80, .03) 1px, transparent 1px);
+      background-size: 50px 50px
+    }
+
+    .phero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto
+    }
+
+    .phero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(76, 175, 80, .15);
+      border: 1px solid rgba(76, 175, 80, .3);
+      color: var(--green-light);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase
+    }
+
+    .phero-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .4
+      }
+    }
+
+    .phero-h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.1
+    }
+
+    .phero-h1 em {
+      font-style: italic;
+      color: var(--green-light)
+    }
+
+    .phero-sub {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 2rem
+    }
+
+    .phero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap
+    }
+
+    .phero-stat {
+      text-align: center
+    }
+
+    .phero-stat .n {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-light)
+    }
+
+    .phero-stat .l {
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .5);
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    /* FILTERS */
+    #filters {
+      background: var(--forest);
+      padding: 16px 6vw;
+      position: sticky;
+      top: 68px;
+      z-index: 90;
+      border-bottom: 1px solid rgba(255, 255, 255, .08)
+    }
+
+    .filter-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .7);
+      border: 1px solid rgba(255, 255, 255, .15);
+      padding: 7px 18px;
+      border-radius: 100px;
+      font-size: .82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .filter-btn.active {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green)
+    }
+
+    .filter-btn:hover:not(.active) {
+      background: rgba(76, 175, 80, .2);
+      color: #fff
+    }
+
+    .filter-count {
+      margin-left: auto;
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .45);
+      white-space: nowrap
+    }
+
+    /* PRODUCT GRID */
+    #products-section {
+      padding: 60px 6vw
+    }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      color: var(--green)
+    }
+
+    .section-heading {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.18;
+      margin-bottom: .5rem;
+      color: var(--forest)
+    }
+
+    .grid-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(26, 61, 10, .08);
+      transition: box-shadow .3s, transform .3s;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer
+    }
+
+    .product-card:hover {
+      box-shadow: 0 12px 40px rgba(26, 61, 10, .16);
+      transform: translateY(-6px)
+    }
+
+    .product-img {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.05)
+    }
+
+    .product-img .placeholder-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: .4
+    }
+
+    .product-img .placeholder-icon svg {
+      width: 56px;
+      height: 56px
+    }
+
+    .product-img .placeholder-icon span {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 600
+    }
+
+    .product-cat-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--forest);
+      color: var(--gold-light);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      padding: 4px 10px;
+      border-radius: 100px;
+      text-transform: uppercase
+    }
+
+    .product-carbon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(26, 26, 26, .85);
+      color: #e2c97a;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 4px 10px;
+      border-radius: 100px;
+      backdrop-filter: blur(4px)
+    }
+
+    .product-body {
+      padding: 1.4rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column
+    }
+
+    .product-body h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: .5rem;
+      line-height: 1.3
+    }
+
+    .product-body p {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 1rem
+    }
+
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: 1rem
+    }
+
+    .product-tag {
+      background: var(--green-pale);
+      color: var(--forest);
+      font-size: .68rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      letter-spacing: .05em
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid #f0f0e8
+    }
+
+    .product-yield {
+      font-size: .8rem;
+      color: var(--text-muted);
+      font-weight: 500
+    }
+
+    .product-yield strong {
+      color: var(--forest);
+      font-weight: 700
+    }
+
+    .btn-enquire {
+      background: var(--forest);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: none;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s;
+      text-decoration: none;
+      display: inline-block
+    }
+
+    .btn-enquire:hover {
+      background: #2d5a1b
+    }
+
+    /* PRODUCT MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .6);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 20px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .3)
+    }
+
+    .modal-img {
+      height: 260px;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden
+    }
+
+    .modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: rgba(0, 0, 0, .5);
+      border-radius: 50%;
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, .8)
+    }
+
+    .modal-body {
+      padding: 2rem
+    }
+
+    .modal-cat {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: .5rem
+    }
+
+    .modal-body h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 1rem;
+      line-height: 1.2
+    }
+
+    .modal-body p {
+      font-size: .97rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem
+    }
+
+    .modal-specs {
+      background: var(--green-pale);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem
+    }
+
+    .modal-specs h4 {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .spec-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem
+    }
+
+    .spec-list li {
+      font-size: .88rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .spec-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap
+    }
+
+    .modal-actions .btn-primary {
+      background: var(--forest);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      transition: background .2s
+    }
+
+    .modal-actions .btn-primary:hover {
+      background: #2d5a1b
+    }
+
+    .modal-actions .btn-wa {
+      background: #25D366;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s
+    }
+
+    .modal-actions .btn-wa:hover {
+      background: #1da851
+    }
+
+    /* CARBON SECTION */
+    #carbon-section {
+      background: linear-gradient(135deg, var(--carbon), #2d2d2d);
+      padding: 60px 6vw;
+      color: #fff
+    }
+
+    .carbon-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center
+    }
+
+    .carbon-text .section-label {
+      color: var(--gold)
+    }
+
+    .carbon-text h2 {
+      color: #fff;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 1rem
+    }
+
+    .carbon-text p {
+      color: rgba(255, 255, 255, .7);
+      font-size: .97rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem
+    }
+
+    .carbon-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem
+    }
+
+    .c-stat {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(200, 168, 75, .2);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center
+    }
+
+    .c-stat .n {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-light)
+    }
+
+    .c-stat .l {
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .5);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: 4px
+    }
+
+    .carbon-molecule {
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    /* CTA BAND */
+    #cta-band {
+      background: var(--forest);
+      padding: 60px 6vw;
+      text-align: center
+    }
+
+    #cta-band h2 {
+      color: #fff;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: .8rem
+    }
+
+    #cta-band p {
+      color: rgba(255, 255, 255, .7);
+      margin-bottom: 2rem;
+      font-size: 1rem
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: .95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s, transform .2s
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px)
+    }
+
+    .btn-whi {
+      background: transparent;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255, 255, 255, .4);
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color .2s
+    }
+
+    .btn-whi:hover {
+      border-color: #fff
+    }
+
+    /* IMAGE UPLOAD HINT */
+    .upload-hint {
+      background: #fff3e0;
+      border: 1.5px dashed #c8a84b;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .upload-hint h4 {
+      color: var(--brown);
+      font-size: .95rem;
+      margin-bottom: .4rem
+    }
+
+    .upload-hint p {
+      color: var(--text-muted);
+      font-size: .83rem;
+      line-height: 1.5
+    }
+
+    /* FOOTER */
+    #footer {
+      background: var(--forest-deep);
+      color: rgba(255, 255, 255, .75);
+      padding: 40px 6vw
+    }
+
+    .footer-mini {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .footer-mini a {
+      color: rgba(255, 255, 255, .5);
+      text-decoration: none;
+      font-size: .82rem;
+      transition: color .2s
+    }
+
+    .footer-mini a:hover {
+      color: var(--green-light)
+    }
+
+    .footer-mini .copy {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .35)
+    }
+
+    /* WA FAB */
+    .wa-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, .5);
+      text-decoration: none;
+      transition: transform .2s
+    }
+
+    .wa-fab:hover {
+      transform: scale(1.1)
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .carbon-inner {
+        grid-template-columns: 1fr
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr
+      }
+
+      .phero-stats {
+        gap: 1.2rem
+      }
+
+      .modal-img {
+        height: 180px
+      }
+
+      .spec-list {
+        grid-template-columns: 1fr
+      }
+
+      .footer-mini {
+        flex-direction: column;
+        text-align: center
+      }
+
+      #filters {
+        top: 68px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- WA FAB -->
+  <a href="https://wa.me/917057778505?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20products."
+    class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+      <path
+        d="M15 2C7.82 2 2 7.82 2 15C2 17.5 2.7 19.84 3.9 21.83L2.1 28L8.43 26.24C10.36 27.34 12.61 28 15 28C22.18 28 28 22.18 28 15C28 7.82 22.18 2 15 2Z"
+        fill="#fff" opacity=".95" />
+      <path
+        d="M10.5 9.5C10.2 9.5 9.7 9.6 9.2 10.1C8.7 10.6 7.5 11.7 7.5 14C7.5 16.2 9.2 18.4 9.4 18.7C9.7 19 12.4 23 16.4 24.5C19.7 25.7 20.4 25.4 21.1 25.3C21.8 25.2 23.3 24.2 23.6 23.1C23.9 22 23.9 21 23.8 20.8C23.7 20.6 23.4 20.5 23 20.3C22.6 20.1 20.4 19 20 18.9C19.6 18.7 19.3 18.6 19 19C18.7 19.4 17.9 20.3 17.6 20.6C17.3 20.9 17 20.9 16.6 20.7C16.2 20.5 14.9 20.1 13.3 18.6C12.1 17.5 11.3 16.1 11 15.7C10.7 15.3 11 15 11.2 14.8C11.4 14.5 11.7 14.2 11.9 13.9C12.1 13.6 12.2 13.4 12.4 13.1C12.6 12.8 12.4 12.5 12.3 12.3C12.2 12.1 11.4 9.9 11 9C10.8 8.6 10.6 8.6 10.5 9.5Z"
+        fill="#25D366" />
+    </svg>
+  </a>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+      Back to Home
+    </a>
+    <a href="index.html" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 38 38" fill="none">
+        <circle cx="19" cy="19" r="18" fill="#1a3d0a" stroke="#4CAF50" stroke-width="1.5" />
+        <path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" />
+        <path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50" opacity=".9" />
+        <path d="M19 16C23 14 26 11 25 7C22 7 19 10 19 14" fill="#6fcf72" opacity=".85" />
+        <circle cx="19" cy="10" r="2.5" fill="#c8a84b" />
+      </svg>
+      <span>AgroTechners</span>
+    </a>
+    <a href="index.html#contact" class="nav-cta">Enquire Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="phero">
+    <div class="phero-inner">
+      <div class="phero-badge">PCT Patented · 3 Output Streams</div>
+      <h1 class="phero-h1">Products from the<br><em>Decarboscrubber</em></h1>
+      <p class="phero-sub">Three categories of high-value organic outputs — simultaneously produced from one tonne of
+        bamboo or grass biomass, zero carbon emissions, 100% circular.</p>
+      <div class="phero-stats">
+        <div class="phero-stat">
+          <div class="n">200L</div>
+          <div class="l">Liquid Fertilizer</div>
+        </div>
+        <div class="phero-stat">
+          <div class="n">230kg</div>
+          <div class="l">Biochar / Carbon</div>
+        </div>
+        <div class="phero-stat">
+          <div class="n">130kg</div>
+          <div class="l">Fuel Gas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div id="filters">
+    <div class="filter-inner">
+      <button class="filter-btn active" data-cat="all">All Products</button>
+      <button class="filter-btn" data-cat="fertilizer">Liquid Fertilizer</button>
+      <button class="filter-btn" data-cat="biochar">Biochar & Carbon</button>
+      <button class="filter-btn" data-cat="gas">Fuel Gas</button>
+      <button class="filter-btn" data-cat="combo">Combo Packs</button>
+      <span class="filter-count" id="filterCount">Showing all products</span>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="products-section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="grid-header">
+        <div>
+          <div class="section-label">Our Products</div>
+          <h2 class="section-heading">Outputs from the Decarboscrubber</h2>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Products are rendered by JS below -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CARBON SECTION -->
+  <section id="carbon-section">
+    <div class="carbon-inner">
+      <div class="carbon-text">
+        <div class="section-label">Carbon Intelligence</div>
+        <h2>Every Product Carries a Carbon Story</h2>
+        <p>Our Decarboscrubber doesn't just produce — it sequesters. For every tonne of biomass processed, 230 kg of
+          carbon is locked into stable biochar, permanently removed from the atmosphere.</p>
+        <p>This qualifies for <strong style="color:var(--gold-light)">VERRA VCS</strong> and <strong
+            style="color:var(--gold-light)">Gold Standard</strong> verified carbon credits — adding a monetisable
+          sustainability layer to every unit sold or deployed.</p>
+        <div class="carbon-stats">
+          <div class="c-stat">
+            <div class="n">230kg</div>
+            <div class="l">CO₂ per tonne</div>
+          </div>
+          <div class="c-stat">
+            <div class="n">0</div>
+            <div class="l">Emissions</div>
+          </div>
+          <div class="c-stat">
+            <div class="n">150+</div>
+            <div class="l">Countries Protected</div>
+          </div>
+          <div class="c-stat">
+            <div class="n">100%</div>
+            <div class="l">Organic</div>
+          </div>
+        </div>
+      </div>
+      <div class="carbon-molecule">
+        <svg viewBox="0 0 300 300" fill="none" width="280" height="280">
+          <!-- Central C atom -->
+          <circle cx="150" cy="150" r="38" fill="rgba(200,168,75,.15)" stroke="#c8a84b" stroke-width="1.5" />
+          <text x="150" y="158" text-anchor="middle" fill="#e2c97a" font-size="28" font-weight="700"
+            font-family="serif">C</text>
+          <!-- Outer atoms -->
+          <circle cx="150" cy="50" r="22" fill="rgba(76,175,80,.12)" stroke="#4CAF50" stroke-width="1.2" />
+          <text x="150" y="57" text-anchor="middle" fill="#6fcf72" font-size="12" font-weight="600"
+            font-family="monospace">CO₂</text>
+          <circle cx="240" cy="100" r="22" fill="rgba(76,175,80,.12)" stroke="#4CAF50" stroke-width="1.2" />
+          <text x="240" y="107" text-anchor="middle" fill="#6fcf72" font-size="10" font-weight="600"
+            font-family="monospace">CH₄</text>
+          <circle cx="240" cy="200" r="22" fill="rgba(200,168,75,.12)" stroke="#c8a84b" stroke-width="1.2" />
+          <text x="240" y="207" text-anchor="middle" fill="#e2c97a" font-size="9" font-weight="600"
+            font-family="monospace">Biochar</text>
+          <circle cx="150" cy="250" r="22" fill="rgba(76,175,80,.12)" stroke="#4CAF50" stroke-width="1.2" />
+          <text x="150" y="257" text-anchor="middle" fill="#6fcf72" font-size="9" font-weight="600"
+            font-family="monospace">Fertilizer</text>
+          <circle cx="60" cy="200" r="22" fill="rgba(200,168,75,.12)" stroke="#c8a84b" stroke-width="1.2" />
+          <text x="60" y="207" text-anchor="middle" fill="#e2c97a" font-size="9" font-weight="600"
+            font-family="monospace">Carbon Cr.</text>
+          <circle cx="60" cy="100" r="22" fill="rgba(76,175,80,.12)" stroke="#4CAF50" stroke-width="1.2" />
+          <text x="60" y="107" text-anchor="middle" fill="#6fcf72" font-size="10" font-weight="600"
+            font-family="monospace">H₂</text>
+          <!-- Bonds -->
+          <line x1="150" y1="112" x2="150" y2="72" stroke="#c8a84b" stroke-width="1.2" opacity=".5" />
+          <line x1="186" y1="131" x2="220" y2="112" stroke="#4CAF50" stroke-width="1.2" opacity=".5" />
+          <line x1="186" y1="169" x2="220" y2="188" stroke="#c8a84b" stroke-width="1.2" opacity=".5" />
+          <line x1="150" y1="188" x2="150" y2="228" stroke="#4CAF50" stroke-width="1.2" opacity=".5" />
+          <line x1="114" y1="169" x2="80" y2="188" stroke="#c8a84b" stroke-width="1.2" opacity=".5" />
+          <line x1="114" y1="131" x2="80" y2="112" stroke="#4CAF50" stroke-width="1.2" opacity=".5" />
+          <!-- orbit ring -->
+          <circle cx="150" cy="150" r="100" stroke="rgba(76,175,80,.08)" stroke-width="1" stroke-dasharray="4,4"
+            fill="none" />
+          <circle cx="150" cy="150" r="65" stroke="rgba(200,168,75,.08)" stroke-width="1" stroke-dasharray="3,5"
+            fill="none" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section id="cta-band">
+    <h2>Ready to Transform Your Land?</h2>
+    <p>Contact us to buy products, discuss bulk pricing, or explore carbon credit partnerships.</p>
+    <div class="cta-buttons">
+      <a href="index.html#contact" class="btn-gold">Send an Enquiry</a>
+      <a href="https://wa.me/917057778505?text=Hi%20AgroTechners%2C%20I%20want%20to%20enquire%20about%20your%20products."
+        target="_blank" class="btn-whi">
+        Chat on WhatsApp →
+      </a>
+    </div>
+  </section>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-img" id="modalImg">
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+        <div id="modalImgInner"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-cat" id="modalCat"></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+        <div class="modal-specs" id="modalSpecsBox">
+          <h4>Product Specifications</h4>
+          <ul class="spec-list" id="modalSpecs"></ul>
+        </div>
+        <div class="modal-actions" id="modalActions"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-mini">
+      <div style="display:flex;align-items:center;gap:10px">
+        <svg width="28" height="28" viewBox="0 0 38 38" fill="none">
+          <circle cx="19" cy="19" r="18" fill="#1a3d0a" stroke="#4CAF50" stroke-width="1.5" />
+          <path d="M19 28V13" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" />
+          <path d="M19 19C15 17 12 14 13 10C16 10 19 13 19 17" fill="#4CAF50" opacity=".9" />
+          <path d="M19 16C23 14 26 11 25 7C22 7 19 10 19 14" fill="#6fcf72" opacity=".85" />
+          <circle cx="19" cy="10" r="2.5" fill="#c8a84b" />
+        </svg>
+        <span style="color:rgba(255,255,255,.6);font-size:.88rem">AgroTechners Biotech Pvt. Ltd.</span>
+      </div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <a href="index.html">Home</a>
+        <a href="index.html#technology">Technology</a>
+        <a href="index.html#patent">Patent</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="admin.html">Admin</a>
+      </div>
+      <div class="copy">© 2025 AgroTechners · PCT WO 2025/057241 A1</div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── PRODUCT DATA ───
+    // To add images: set the `img` field to a file path or data URL.
+    // You can also edit this list to add/remove products.
+    const PRODUCTS = [
+      {
+        id: 1, cat: 'fertilizer',
+        name: 'Bamboosol Organic Liquid Fertilizer',
+        tagline: 'Restore barren soil. Revive life.',
+        desc: 'Produced directly from bamboo biomass through the Decarboscrubber process. Rich in seven key micronutrients — Zinc, Copper, Iron, Nitrogen, Magnesium, Boron, and Sulphur. Tested and proven on completely barren wasteland, now bearing fruit. Zero petroleum inputs. 100% circular organic chemistry.',
+        img: '', // 👈 "C:\Users\cd-user\Downloads\salt.jpeg"
+        yield: '~200 L per tonne',
+        tags: ['Organic', 'Zero Petroleum', 'Soil Restoration', 'Micronutrient Rich'],
+        specs: ['Yield: ~200 litres per tonne', 'pH: Near neutral', 'Contains: Zn, Cu, Fe, N, Mg, B, S', 'Form: Liquid concentrate', 'Application: Spray or drip irrigation', 'Shelf life: 12+ months sealed'],
+        carbon: false
+      },
+      {
+        id: 2, cat: 'fertilizer',
+        name: 'BambooBoost Concentrated Fertilizer',
+        tagline: '3x concentrated formula for intensive farming.',
+        desc: 'A triple-concentrated variant of the Bamboosol base formula, engineered for intensive agricultural use, large-scale farms, and government land restoration programs. Dilute 1:3 with water before application. Suitable for all soil types.',
+        img: '',
+        yield: '~66 L (3x conc.) per tonne',
+        tags: ['Concentrated', 'Large Scale', 'Government Grade'],
+        specs: ['Concentration: 3x base formula', 'Dilution ratio: 1:3 with water', 'Suitable for: All soil types', 'Packaging: 20L, 100L, 200L', 'Application: Spray, drip, soil drench', 'Certification: Under process'],
+        carbon: false
+      },
+      {
+        id: 3, cat: 'biochar',
+        name: 'CarbonSoil Premium Biochar',
+        tagline: 'Sequester carbon. Enrich soil. Earn credits.',
+        desc: 'High-grade activated biochar produced at 460°C from bamboo and grass biomass. Enhances soil water retention by up to 40%, improves cation exchange capacity, and supports long-term carbon sequestration. Each kilogram represents approximately 3.67 kg of CO₂ permanently removed from the atmosphere.',
+        img: '',
+        yield: '~230 kg per tonne',
+        tags: ['Carbon Credit Eligible', 'Soil Amendment', 'Water Filtration', 'VERRA/Gold Standard'],
+        specs: ['Yield: ~230 kg per tonne', 'Carbon content: >70%', 'Surface area: High (activated)', 'Particle size: 0.5–2mm', 'Application: Soil amendment, water filter', 'Carbon credits: ~3.67 kg CO₂ per kg'],
+        carbon: true
+      },
+      {
+        id: 4, cat: 'biochar',
+        name: 'AquaChar Water Filtration Carbon',
+        tagline: 'Industrial-grade activated carbon for water purification.',
+        desc: 'Activated carbon derived from bamboo biochar, processed to maximise surface area and adsorption capacity. Suitable for drinking water filtration, industrial effluent treatment, wastewater systems, and air purification units. NSF/ANSI standards compliance under evaluation.',
+        img: '',
+        yield: 'Derived from ~230 kg/tonne stream',
+        tags: ['Water Filtration', 'Industrial', 'Activated Carbon', 'Adsorption'],
+        specs: ['Form: Granulated or powdered', 'Surface area: Very high (BAC grade)', 'Application: Water/air filtration', 'Mesh size: 8×30, 12×40 custom', 'Iodine number: >900 mg/g est.', 'Packaging: 25kg bags, bulk'],
+        carbon: true
+      },
+      {
+        id: 5, cat: 'biochar',
+        name: 'CarbonCred Biochar Carbon Credit Pack',
+        tagline: 'Buy biochar. Get verified carbon credits.',
+        desc: 'Each purchase of CarbonCred includes documentation toward verified carbon offsets under VERRA VCS methodology. As a CSR buyer, government agency, or corporate, you receive both the physical biochar and a certified carbon credit certificate. Eligible under international climate accounting frameworks.',
+        img: '',
+        yield: '1 tonne = ~845 kg CO₂ credits',
+        tags: ['Carbon Credits', 'CSR', 'VERRA VCS', 'Corporate'],
+        specs: ['Physical biochar: 230 kg/tonne', 'Carbon offset: ~3.67 kg CO₂/kg', 'Credit standard: VERRA VCS (pending)', 'Documentation: Included', 'Use case: CSR, ESG reporting', 'Minimum order: 1 tonne biomass processed'],
+        carbon: true
+      },
+      {
+        id: 6, cat: 'gas',
+        name: 'DecarboGas Biomass Fuel Gas',
+        tagline: 'Self-power your operations with clean biomass gas.',
+        desc: 'A mixture of methane (CH₄), hydrogen (H₂), and carbon monoxide (CO) produced during the Decarboscrubber heating cycle. Primary use case is self-powering the apparatus, reducing external electricity dependency by up to 60–70%. Surplus gas can power adjacent systems or be stored.',
+        img: '',
+        yield: '~130 kg per tonne',
+        tags: ['Self-Powering', 'CH₄/H₂/CO', 'Zero Carbon', 'Energy Independent'],
+        specs: ['Yield: ~130 kg per tonne', 'Composition: CH₄, H₂, CO', 'Primary use: Self-power apparatus', 'Secondary use: Adjacent systems', 'Calorific value: High', 'Emission profile: Zero net carbon'],
+        carbon: false
+      },
+      {
+        id: 7, cat: 'combo',
+        name: 'AgroRestore Starter Pack',
+        tagline: 'Everything a farmer needs to restore 1 acre.',
+        desc: 'A carefully curated starter bundle for farmers looking to restore degraded soil. Includes Bamboosol liquid fertilizer (100L), CarbonSoil biochar (25kg), and an application guide with soil preparation instructions. Ideal for first-time users testing the technology on their land.',
+        img: '',
+        yield: 'Covers ~1 acre restoration',
+        tags: ['Farmer Pack', 'Combo', 'Starter Kit', '100L + 25kg'],
+        specs: ['Includes: 100L Bamboosol fertilizer', 'Includes: 25kg CarbonSoil biochar', 'Application guide: Printed + PDF', 'Coverage: ~1 acre', 'Support: WhatsApp advisory included', 'Reorder: Monthly subscription available'],
+        carbon: false
+      },
+      {
+        id: 8, cat: 'combo',
+        name: 'Government District Pack',
+        tagline: 'Scalable land restoration for district-level deployment.',
+        desc: 'Designed for state and central government agencies deploying under PKVY, NMSA, or state horticulture schemes. Includes bulk supply of liquid fertilizer and biochar, along with technical documentation, impact measurement templates, before/after assessment protocols, and carbon credit pre-eligibility reports.',
+        img: '',
+        yield: 'Per tonne biomass processed',
+        tags: ['Government', 'Bulk Supply', 'PKVY/NMSA', 'Impact Reporting'],
+        specs: ['Scale: District / taluka level', 'Supply: Bulk liquid fertilizer + biochar', 'Documentation: Technical brief included', 'Impact metrics: Provided', 'Carbon credits: Pre-eligibility report', 'Contact: Team deputation available'],
+        carbon: true
+      },
+    ];
+
+    // ─── ADMIN SYNC: merge stored products + apply logo/contact ───
+    (function applyAdminSettings() {
+      function ls(key, fallback) { try { return localStorage.getItem(key) || fallback; } catch(e) { return fallback; } }
+
+      // LOGO in navbar
+      const logoData = ls('agro_logo', '');
+      if (logoData) {
+        const navLogo = document.querySelector('.nav-logo svg');
+        if (navLogo) {
+          const img = document.createElement('img');
+          img.src = logoData;
+          img.style.cssText = 'width:32px;height:32px;object-fit:contain;border-radius:50%';
+          navLogo.replaceWith(img);
+        }
+        const footerSvg = document.querySelector('#footer svg');
+        if (footerSvg) {
+          const img2 = document.createElement('img');
+          img2.src = logoData;
+          img2.style.cssText = 'width:28px;height:28px;object-fit:contain;border-radius:50%';
+          footerSvg.replaceWith(img2);
+        }
+      }
+
+      // WA FAB — update number
+      const waNum = ls('agro_contact_whatsapp', '+91 70577 78505');
+      const rawNum = waNum.replace(/\D/g, '');
+      const waFab = document.querySelector('.wa-fab');
+      if (waFab) waFab.href = 'https://wa.me/' + rawNum + '?text=Hi%20AgroTechners%2C%20I%20am%20interested%20in%20your%20products.';
+
+      // CTA band WhatsApp button
+      const ctaWa = document.querySelector('#cta-band .btn-whi');
+      if (ctaWa) ctaWa.href = 'https://wa.me/' + rawNum + '?text=Hi%20AgroTechners%2C%20I%20want%20to%20enquire%20about%20your%20products.';
+
+      // Merge admin-added products into PRODUCTS array
+      const storedProducts = JSON.parse(ls('agro_products', 'null'));
+      if (storedProducts) {
+        // Sync names from admin into PRODUCTS
+        storedProducts.forEach(sp => {
+          const existing = PRODUCTS.find(p => p.id === sp.id);
+          if (existing) {
+            existing.name = sp.name; // allow renaming
+          } else {
+            // New product added via admin
+            PRODUCTS.push({
+              id: sp.id, cat: 'combo',
+              name: sp.name,
+              tagline: sp.desc || 'Custom product.',
+              desc: sp.desc || 'Contact us for details about this product.',
+              img: '',
+              yield: 'Contact for details',
+              tags: ['New'],
+              specs: ['Contact us for full specifications'],
+              carbon: false
+            });
+          }
+        });
+        // Remove products deleted in admin (keep if in storedProducts)
+        const storedIds = storedProducts.map(p => p.id);
+        for (let i = PRODUCTS.length - 1; i >= 0; i--) {
+          if (!storedIds.includes(PRODUCTS[i].id)) PRODUCTS.splice(i, 1);
+        }
+      }
+    })();
+
+    // ─── RENDER PRODUCTS ───
+    const grid = document.getElementById('productsGrid');
+    const filterCount = document.getElementById('filterCount');
+
+    function getImgFromStorage(id) {
+      try { return localStorage.getItem('prod_img_' + id) || '' } catch (e) { return '' }
+    }
+
+    function renderProducts(cat = 'all') {
+      const filtered = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === cat);
+      filterCount.textContent = `Showing ${filtered.length} product${filtered.length !== 1 ? 's' : ''}`;
+      grid.innerHTML = '';
+      filtered.forEach((p, i) => {
+        const img = p.img || getImgFromStorage(p.id);
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.style.animationDelay = i * .07 + 's';
+        card.innerHTML = `
+      <div class="product-img">
+        ${img ? `<img src="${img}" alt="${p.name}" loading="lazy">` : `<div class="placeholder-icon">${getCatIcon(p.cat)}<span>${getCatLabel(p.cat)}</span></div>`}
+        <div class="product-cat-badge">${getCatLabel(p.cat)}</div>
+        ${p.carbon ? '<div class="product-carbon">🌿 Carbon Credit</div>' : ''}
+      </div>
+      <div class="product-body">
+        <h3>${p.name}</h3>
+        <p>${p.tagline}</p>
+        <div class="product-tags">${p.tags.map(t => `<span class="product-tag">${t}</span>`).join('')}</div>
+        <div class="product-footer">
+          <div class="product-yield">Yield: <strong>${p.yield}</strong></div>
+          <button class="btn-enquire" data-id="${p.id}">Learn More</button>
+        </div>
+      </div>`;
+        card.querySelector('.btn-enquire').addEventListener('click', e => { e.stopPropagation(); openModal(p.id) });
+        card.addEventListener('click', () => openModal(p.id));
+        grid.appendChild(card);
+      });
+    }
+
+    function getCatLabel(c) {
+      return { fertilizer: 'Liquid Fertilizer', biochar: 'Biochar & Carbon', gas: 'Fuel Gas', combo: 'Combo Pack' }[c] || c;
+    }
+    function getCatIcon(c) {
+      const icons = {
+        fertilizer: `<svg width="52" height="52" viewBox="0 0 52 52" fill="none"><path d="M26 8C18 16 10 24 10 33C10 41.8 17.2 49 26 49C34.8 49 42 41.8 42 33C42 24 34 16 26 8Z" stroke="#4CAF50" stroke-width="2" fill="none" opacity=".6"/><path d="M26 20C22 26 18 32 18 37C18 41 21.6 44 26 44" stroke="#2d8a32" stroke-width="2" stroke-linecap="round" fill="none"/></svg>`,
+        biochar: `<svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="14" y="14" width="24" height="24" rx="6" stroke="#1a3d0a" stroke-width="2" fill="none" opacity=".6"/><rect x="20" y="20" width="12" height="12" rx="3" fill="#4CAF50" opacity=".35"/><circle cx="26" cy="26" r="3" fill="#1a3d0a" opacity=".5"/></svg>`,
+        gas: `<svg width="52" height="52" viewBox="0 0 52 52" fill="none"><path d="M26 10C26 10 18 20 18 30C18 36 21.5 40 26 41C30.5 40 34 36 34 30C34 20 26 10 26 10Z" stroke="#c8a84b" stroke-width="2" fill="none" opacity=".7"/><path d="M22 44H30M26 41V44" stroke="#c8a84b" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+        combo: `<svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="8" y="24" width="36" height="22" rx="4" stroke="#4CAF50" stroke-width="1.8" fill="none" opacity=".6"/><path d="M16 24V18C16 13.6 19.6 10 24 10H28C32.4 10 36 13.6 36 18V24" stroke="#4CAF50" stroke-width="1.8" stroke-linecap="round" fill="none" opacity=".6"/><circle cx="26" cy="36" r="4" stroke="#c8a84b" stroke-width="1.5" fill="none"/></svg>`
+      };
+      return icons[c] || '';
+    }
+
+    // ─── MODAL ───
+    const overlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    function openModal(id) {
+      const p = PRODUCTS.find(x => x.id === id); if (!p) return;
+      const img = p.img || getImgFromStorage(p.id);
+      const mi = document.getElementById('modalImgInner');
+      mi.innerHTML = img ? `<img src="${img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover">` : `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.4">${getCatIcon(p.cat)}</div>`;
+      document.getElementById('modalCat').textContent = getCatLabel(p.cat);
+      document.getElementById('modalTitle').textContent = p.name;
+      document.getElementById('modalDesc').textContent = p.desc;
+      const sl = document.getElementById('modalSpecs');
+      sl.innerHTML = p.specs.map(s => `<li>${s}</li>`).join('');
+      const waMsg = encodeURIComponent(`Hi AgroTechners, I am interested in: ${p.name}. Please share pricing and availability.`);
+      const storedWa = (localStorage.getItem('agro_contact_whatsapp') || '917057778505').replace(/\D/g, '');
+      document.getElementById('modalActions').innerHTML = `
+    <a href="index.html#contact" class="btn-primary">Send Enquiry</a>
+    <a href="https://wa.me/${storedWa}?text=${waMsg}" target="_blank" rel="noopener" class="btn-wa">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 1C5.03 1 1 5.03 1 10C1 11.65 1.45 13.2 2.25 14.54L1.07 18.93L5.58 17.77C6.87 18.54 8.38 19 10 19C14.97 19 19 14.97 19 10C19 5.03 14.97 1 10 1Z" fill="#fff" opacity=".9"/><path d="M6.9 6.5C6.65 6.5 6.25 6.6 5.9 7C5.55 7.4 4.65 8.25 4.65 9.9C4.65 11.55 5.95 13.15 6.1 13.35C6.25 13.55 8.5 17.1 11.9 18.2C14.65 19.1 15.25 18.85 15.75 18.75C16.4 18.6 17.55 17.85 17.8 17C18.05 16.15 18.05 15.4 17.95 15.25C17.85 15.1 17.6 15 17.25 14.8C16.9 14.6 15.1 13.75 14.75 13.65C14.4 13.5 14.1 13.45 13.85 13.8C13.6 14.15 12.85 15 12.6 15.25C12.35 15.5 12.1 15.5 11.75 15.35C11.4 15.15 10.25 14.8 8.85 13.55C7.75 12.55 7.05 11.3 6.85 10.95C6.65 10.6 6.85 10.4 7.05 10.2C7.2 10.05 7.45 9.75 7.6 9.5C7.75 9.25 7.85 9.05 8 8.8C8.15 8.55 8 8.3 7.9 8.1C7.8 7.9 7.1 6.1 6.85 5.55C6.7 5.1 6.55 5.1 6.9 6.5Z" fill="#25D366"/></svg>
+      WhatsApp Us
+    </a>`;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+    modalClose.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ─── FILTERS ───
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProducts(btn.dataset.cat);
+      });
+    });
+
+    // Initial render
+    renderProducts();
+  </script>
+</body>
+
+</html>
